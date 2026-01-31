@@ -1,0 +1,53 @@
+# Safety thresholds for freediving conditions assessment
+# Lower values are better for wind and waves
+# Higher values are better for swell period
+
+thresholds:
+  # Wind speed in knots
+  wind_speed_kt:
+    safe: 10        # <10kt: calm, ideal conditions
+    caution: 15     # 10-15kt: manageable but choppy
+    unsafe: 20      # >20kt: rough, not recommended
+
+  # Significant wave height in meters
+  wave_height_m:
+    safe: 0.5       # <0.5m: flat, excellent
+    caution: 1.0    # 0.5-1.0m: moderate, acceptable
+    unsafe: 1.5     # >1.5m: rough, unsafe
+
+  # Swell period in seconds (higher = better organized swells)
+  swell_period_s:
+    safe: 10        # >10s: long period, smooth
+    caution: 7      # 7-10s: moderate
+    unsafe: 5       # <5s: short choppy swells
+
+  # Swell height in meters
+  swell_height_m:
+    safe: 1.0       # <1.0m: minimal swell
+    caution: 1.5    # 1.0-1.5m: moderate swell
+    unsafe: 2.0     # >2.0m: large swell
+
+  # Wind gust in knots
+  wind_gust_kt:
+    safe: 15        # <15kt: minimal gusts
+    caution: 20     # 15-20kt: moderate gusts
+    unsafe: 25      # >25kt: strong gusts
+
+# Visibility estimation parameters
+visibility:
+  turbidity_fnu:
+    good: 2.0       # <2.0 FNU: clear water
+    poor: 5.0       # >5.0 FNU: murky water
+
+  rainfall_mm_3day:
+    good: 10        # <10mm: minimal impact
+    poor: 50        # >50mm: significant runoff
+
+  wind_avg_kt_5day:
+    good: 8         # <8kt: calm seas
+    poor: 15        # >15kt: churned up sediment
+
+# Notes:
+# - These thresholds are conservative for freediving safety
+# - Adjust based on your experience level and comfort
+# - Consider combining multiple factors (e.g., high wind + high waves = worse)

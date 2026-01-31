@@ -1,0 +1,44 @@
+spots:
+- name: Racha Yai
+  lat: 7.601
+  lng: 98.366
+  region: Racha Islands
+  depth_range: 5-40m
+  description: Popular dive site with excellent visibility, coral reefs and marine
+    life
+- name: Shark Point
+  lat: 7.734
+  lng: 98.414
+  region: South Phuket
+  depth_range: 10-25m
+  description: Three limestone pinnacles, leopard sharks, vibrant soft corals
+- name: King Cruiser Wreck
+  lat: 7.701
+  lng: 98.403
+  region: Between Phuket and Phi Phi
+  depth_range: 12-32m
+  description: Car ferry wreck, artificial reef with abundant marine life
+- name: Koh Doc Mai
+  lat: 7.677
+  lng: 98.389
+  region: South Phuket
+  depth_range: 8-30m
+  description: Vertical limestone wall, excellent for deep freediving training
+- name: Anemone Reef
+  lat: 7.724
+  lng: 98.412
+  region: South Phuket
+  depth_range: 5-22m
+  description: Submerged reef covered in sea anemones, good for beginners
+- name: Raja Amphat
+  lat: -2.02872
+  lng: 130.65406
+  region: West Papua, Indonesia
+  depth_range: 5-40m
+  description: World-renowned biodiversity hotspot, pristine reefs
+- name: Ras Mohammed
+  lat: 27.7333
+  lng: 34.2333
+  region: Sinai Peninsula, Egypt
+  depth_range: 10-30m
+  description: Famous Red Sea national park, walls and drop-offs, abundant marine life
