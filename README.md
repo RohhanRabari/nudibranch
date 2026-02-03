@@ -65,7 +65,7 @@ Beautiful, real-time dive conditions monitoring right in your terminal using 100
 
 ```bash
 # Clone from GitHub
-git clone https://github.com/yourusername/nudibranch.git
+git clone https://github.com/RohhanRabari/nudibranch.git
 cd nudibranch
 ```
 
