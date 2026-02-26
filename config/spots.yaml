@@ -49,3 +49,16 @@ spots:
   region: Gulf of Khambhat (Gujarat)
   depth_range: '?'
   description: '?'
+- name: Shivrajpur Beach
+  lat: 22.337619
+  lng: 68.955994
+  region: Gujarat (12km North of Dwarka)
+  depth_range: ~10-30?
+  description: Not much of a Dive spot for me but a spot close to home, small shallow
+    kelp and rock structure
+- name: Hua Beach [Barnacle Rocks]
+  lat: 7.95192
+  lng: 98.264384
+  region: ~Kamala, Phuket
+  depth_range: 5-15m
+  description: Lost my God damn DJI :(
