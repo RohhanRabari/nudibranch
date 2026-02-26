@@ -1,13 +1,12 @@
 """Main Textual TUI application for Nudibranch dive conditions dashboard."""
 
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
-from textual import work
 from textual.app import App, ComposeResult
-from textual.containers import Container, Horizontal, Vertical
-from textual.widgets import DataTable, Footer, Header, Label, Static
+from textual.containers import Horizontal, Vertical
+from textual.widgets import DataTable, Footer, Label, Static, TabbedContent, TabPane
 
 from nudibranch.aggregator import ConditionsAggregator
 from nudibranch.clients.open_meteo import OpenMeteoClient
@@ -15,10 +14,12 @@ from nudibranch.clients.tides import TideClient
 from nudibranch.config import Config
 from nudibranch.models import DiveSpot
 from nudibranch.safety import SafetyAssessor
+from nudibranch.tui.widgets.charts import InfoPanel, TideChart, WaveWindChart
 from nudibranch.tui.widgets.conditions_table import ConditionsTableWidget, RefreshComplete
 from nudibranch.tui.widgets.help_screen import HelpScreen
+from nudibranch.tui.widgets.map_tile import MapTileWidget
 from nudibranch.tui.widgets.spot_manager import AddSpotScreen, DeleteConfirmScreen, SpotManager
-from nudibranch.tui.widgets.tide_panel import TidePanelWidget
+from nudibranch.tui.widgets.wind_grid import WindGridWidget, WindRoseChart
 from nudibranch.visibility import VisibilityEstimator
 
 
@@ -37,23 +38,6 @@ class HeaderClock(Static):
         date_str = now.strftime("%Y-%m-%d")
         self.update(f"🌊 NUDIBRANCH - Dive Conditions Dashboard    {date_str} {time_str}")
 
-
-class ConditionsTable(Static):
-    """Placeholder for conditions table widget."""
-
-    def compose(self) -> ComposeResult:
-        """Compose the table."""
-        yield Label("📊 Conditions Table")
-        yield Label("(Loading dive spot conditions...)")
-
-
-class TidePanel(Static):
-    """Placeholder for tide panel widget."""
-
-    def compose(self) -> ComposeResult:
-        """Compose the panel."""
-        yield Label("🌙 Tide Information")
-        yield Label("(Select a dive spot to see tide details)")
 
 
 class StatusBar(Static):
@@ -131,15 +115,14 @@ class NudibranchApp(App):
     }
 
     #conditions_container {
-        width: 70%;
+        width: 60%;
         border: solid $primary;
         padding: 1;
     }
 
-    #tide_container {
-        width: 30%;
+    #detail_container {
+        width: 40%;
         border: solid $primary;
-        padding: 1;
     }
 
     ConditionsTableWidget {
@@ -150,12 +133,39 @@ class NudibranchApp(App):
         height: 1fr;
     }
 
-    TidePanelWidget {
+    TabbedContent {
         height: 1fr;
     }
 
-    #tide_content {
+    TabPane {
+        padding: 0 1;
+    }
+
+    #charts_stack {
         height: 1fr;
+    }
+
+    TideChart {
+        height: 1fr;
+        min-height: 10;
+    }
+
+    WaveWindChart {
+        height: 1fr;
+        min-height: 10;
+    }
+
+    #wind_stack {
+        height: 1fr;
+    }
+
+    WindGridWidget {
+        height: 2fr;
+    }
+
+    WindRoseChart {
+        height: 1fr;
+        min-height: 10;
     }
 
     StatusBar {
@@ -259,8 +269,20 @@ class NudibranchApp(App):
         with Horizontal(id="main_container"):
             with Vertical(id="conditions_container"):
                 yield ConditionsTableWidget(self.spots, self.aggregator)
-            with Vertical(id="tide_container"):
-                yield TidePanelWidget()
+            with Vertical(id="detail_container"):
+                with TabbedContent():
+                    with TabPane("Map", id="tab_map"):
+                        yield MapTileWidget()
+                    with TabPane("Charts", id="tab_charts"):
+                        with Vertical(id="charts_stack"):
+                            yield TideChart()
+                            yield WaveWindChart()
+                    with TabPane("Wind", id="tab_wind"):
+                        with Vertical(id="wind_stack"):
+                            yield WindGridWidget()
+                            yield WindRoseChart()
+                    with TabPane("Info", id="tab_info"):
+                        yield InfoPanel()
         yield StatusBar()
         yield Footer()
 
@@ -381,9 +403,13 @@ class NudibranchApp(App):
         conditions_widget = self.query_one(ConditionsTableWidget)
         conditions_widget.update_spots(self.spots)
 
-        # Clear the tide panel
-        tide_panel = self.query_one(TidePanelWidget)
-        tide_panel.clear()
+        # Clear all detail tabs
+        self.query_one(MapTileWidget).clear()
+        self.query_one(TideChart).clear()
+        self.query_one(WaveWindChart).clear()
+        self.query_one(WindGridWidget).clear()
+        self.query_one(WindRoseChart).clear()
+        self.query_one(InfoPanel).clear()
 
         # Trigger a refresh to fetch data for new/remaining spots
         self._trigger_refresh()
@@ -396,24 +422,58 @@ class NudibranchApp(App):
         Args:
             event: Row highlighted event
         """
-        # Get the conditions table widget
         conditions_widget = self.query_one(ConditionsTableWidget)
-        tide_panel = self.query_one(TidePanelWidget)
-
-        # Get selected spot name from event
         spot_name = str(event.row_key.value)
 
-        if spot_name:
-            # Get conditions for this spot
-            conditions = conditions_widget.get_conditions(spot_name)
+        if not spot_name:
+            return
 
-            if conditions:
-                # Update tide panel
-                tide_panel.set_conditions(spot_name, conditions)
-                self.log(f"Selected spot: {spot_name}")
-            else:
-                self.log(f"No conditions available for {spot_name}")
-                tide_panel.clear()
+        conditions = conditions_widget.get_conditions(spot_name)
+
+        if not conditions:
+            self.log(f"No conditions available for {spot_name}")
+            self.query_one(MapTileWidget).clear()
+            self.query_one(TideChart).clear()
+            self.query_one(WaveWindChart).clear()
+            self.query_one(WindGridWidget).clear()
+            self.query_one(WindRoseChart).clear()
+            self.query_one(InfoPanel).clear()
+            return
+
+        self.log(f"Selected spot: {spot_name}")
+
+        # Update Map tab
+        self.query_one(MapTileWidget).set_location(
+            conditions.spot.lat, conditions.spot.lng, spot_name,
+        )
+
+        # Update Charts tab
+        if conditions.tides and conditions.tides.extremes:
+            now = datetime.now(timezone.utc)
+            current_hour = now.hour + now.minute / 60.0
+            self.query_one(TideChart).set_tide_data(
+                conditions.tides.extremes, current_hour,
+            )
+
+        if conditions.marine:
+            self.query_one(WaveWindChart).set_data(
+                conditions.marine.wave_height_m, conditions.marine.wind_speed_kt,
+            )
+
+        # Update Wind tab
+        if conditions.marine:
+            self.query_one(WindGridWidget).set_wind(
+                conditions.marine.wind_speed_kt,
+                conditions.marine.wind_direction_deg or 0.0,
+                conditions.marine.wind_gust_kt,
+            )
+            self.query_one(WindRoseChart).set_wind(
+                conditions.marine.wind_speed_kt,
+                conditions.marine.wind_direction_deg or 0.0,
+            )
+
+        # Update Info tab
+        self.query_one(InfoPanel).set_conditions(spot_name, conditions)
 
 
 def main() -> None:

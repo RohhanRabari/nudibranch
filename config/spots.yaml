@@ -41,4 +41,11 @@ spots:
   lng: 34.2333
   region: Sinai Peninsula, Egypt
   depth_range: 10-30m
-  description: Famous Red Sea national park, walls and drop-offs, abundant marine life
+  description: Famous Red Sea national park, walls and drop-offs, abundant marine
+    life
+- name: Gopnath
+  lat: 21.20973331217586
+  lng: 72.10775409767042
+  region: Gulf of Khambhat (Gujarat)
+  depth_range: '?'
+  description: '?'
