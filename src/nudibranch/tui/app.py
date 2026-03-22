@@ -17,7 +17,6 @@ from nudibranch.safety import SafetyAssessor
 from nudibranch.tui.widgets.charts import InfoPanel, TideChart, WaveWindChart
 from nudibranch.tui.widgets.conditions_table import ConditionsTableWidget, RefreshComplete
 from nudibranch.tui.widgets.help_screen import HelpScreen
-from nudibranch.tui.widgets.map_tile import MapTileWidget
 from nudibranch.tui.widgets.spot_manager import AddSpotScreen, DeleteConfirmScreen, SpotManager
 from nudibranch.tui.widgets.wind_grid import WindGridWidget, WindRoseChart
 from nudibranch.visibility import VisibilityEstimator
@@ -271,8 +270,6 @@ class NudibranchApp(App):
                 yield ConditionsTableWidget(self.spots, self.aggregator)
             with Vertical(id="detail_container"):
                 with TabbedContent():
-                    with TabPane("Map", id="tab_map"):
-                        yield MapTileWidget()
                     with TabPane("Charts", id="tab_charts"):
                         with Vertical(id="charts_stack"):
                             yield TideChart()
@@ -404,7 +401,6 @@ class NudibranchApp(App):
         conditions_widget.update_spots(self.spots)
 
         # Clear all detail tabs
-        self.query_one(MapTileWidget).clear()
         self.query_one(TideChart).clear()
         self.query_one(WaveWindChart).clear()
         self.query_one(WindGridWidget).clear()
@@ -432,7 +428,6 @@ class NudibranchApp(App):
 
         if not conditions:
             self.log(f"No conditions available for {spot_name}")
-            self.query_one(MapTileWidget).clear()
             self.query_one(TideChart).clear()
             self.query_one(WaveWindChart).clear()
             self.query_one(WindGridWidget).clear()
@@ -441,11 +436,6 @@ class NudibranchApp(App):
             return
 
         self.log(f"Selected spot: {spot_name}")
-
-        # Update Map tab
-        self.query_one(MapTileWidget).set_location(
-            conditions.spot.lat, conditions.spot.lng, spot_name,
-        )
 
         # Update Charts tab
         if conditions.tides and conditions.tides.extremes:
