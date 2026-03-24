@@ -1,0 +1,1801 @@
+# Tide station data from published tide tables.
+# Source: Thai Hydrographic Department (Ko Taphao Noi station)
+# Times are local (Asia/Bangkok, UTC+7). Heights are meters above MSL datum.
+
+stations:
+  - id: phuket_ko_taphao_noi
+    name: "Ko Taphao Noi"
+    lat: 7.8333
+    lng: 98.4167
+    timezone: "Asia/Bangkok"
+    source: "Thai Hydrographic Department"
+    datum: "MSL"
+    year: 2026
+    extremes:
+      # January
+      "01-01":
+        - { time: "02:42", height_m: 1.11, type: Low }
+        - { time: "08:41", height_m: 2.55, type: High }
+        - { time: "14:46", height_m: 1.13, type: Low }
+        - { time: "21:13", height_m: 3.05, type: High }
+      "01-02":
+        - { time: "03:36", height_m: 0.91, type: Low }
+        - { time: "09:43", height_m: 2.66, type: High }
+        - { time: "15:45", height_m: 1.02, type: Low }
+        - { time: "22:05", height_m: 3.19, type: High }
+      "01-03":
+        - { time: "04:25", height_m: 0.75, type: Low }
+        - { time: "10:35", height_m: 2.75, type: High }
+        - { time: "16:35", height_m: 0.93, type: Low }
+        - { time: "22:52", height_m: 3.3, type: High }
+      "01-04":
+        - { time: "05:10", height_m: 0.65, type: Low }
+        - { time: "11:22", height_m: 2.82, type: High }
+        - { time: "17:21", height_m: 0.88, type: Low }
+        - { time: "23:34", height_m: 3.36, type: High }
+      "01-05":
+        - { time: "05:53", height_m: 0.61, type: Low }
+        - { time: "12:05", height_m: 2.86, type: High }
+        - { time: "18:03", height_m: 0.88, type: Low }
+      "01-06":
+        - { time: "00:14", height_m: 3.35, type: High }
+        - { time: "06:33", height_m: 0.62, type: Low }
+        - { time: "12:45", height_m: 2.87, type: High }
+        - { time: "18:42", height_m: 0.92, type: Low }
+      "01-07":
+        - { time: "00:51", height_m: 3.26, type: High }
+        - { time: "07:11", height_m: 0.69, type: Low }
+        - { time: "13:24", height_m: 2.83, type: High }
+        - { time: "19:19", height_m: 1.02, type: Low }
+      "01-08":
+        - { time: "01:25", height_m: 3.11, type: High }
+        - { time: "07:46", height_m: 0.81, type: Low }
+        - { time: "14:00", height_m: 2.77, type: High }
+        - { time: "19:54", height_m: 1.15, type: Low }
+      "01-09":
+        - { time: "01:57", height_m: 2.9, type: High }
+        - { time: "08:19", height_m: 0.96, type: Low }
+        - { time: "14:35", height_m: 2.68, type: High }
+        - { time: "20:31", height_m: 1.3, type: Low }
+      "01-10":
+        - { time: "02:28", height_m: 2.67, type: High }
+        - { time: "08:52", height_m: 1.13, type: Low }
+        - { time: "15:12", height_m: 2.58, type: High }
+        - { time: "21:14", height_m: 1.45, type: Low }
+      "01-11":
+        - { time: "03:03", height_m: 2.44, type: High }
+        - { time: "09:30", height_m: 1.3, type: Low }
+        - { time: "15:57", height_m: 2.47, type: High }
+        - { time: "22:14", height_m: 1.59, type: Low }
+      "01-12":
+        - { time: "03:54", height_m: 2.22, type: High }
+        - { time: "10:21", height_m: 1.47, type: Low }
+        - { time: "17:14", height_m: 2.38, type: High }
+        - { time: "23:41", height_m: 1.66, type: Low }
+      "01-13":
+        - { time: "05:44", height_m: 2.08, type: High }
+        - { time: "11:39", height_m: 1.58, type: Low }
+        - { time: "18:48", height_m: 2.38, type: High }
+      "01-14":
+        - { time: "01:47", height_m: 1.57, type: Low }
+        - { time: "07:26", height_m: 2.1, type: High }
+        - { time: "13:15", height_m: 1.58, type: Low }
+        - { time: "20:05", height_m: 2.48, type: High }
+      "01-15":
+        - { time: "02:48", height_m: 1.39, type: Low }
+        - { time: "08:42", height_m: 2.21, type: High }
+        - { time: "14:38", height_m: 1.46, type: Low }
+        - { time: "21:05", height_m: 2.63, type: High }
+      "01-16":
+        - { time: "03:29", height_m: 1.22, type: Low }
+        - { time: "09:33", height_m: 2.35, type: High }
+        - { time: "15:26", height_m: 1.31, type: Low }
+        - { time: "21:48", height_m: 2.79, type: High }
+      "01-17":
+        - { time: "04:03", height_m: 1.07, type: Low }
+        - { time: "10:11", height_m: 2.47, type: High }
+        - { time: "16:03", height_m: 1.18, type: Low }
+        - { time: "22:22", height_m: 2.93, type: High }
+      "01-18":
+        - { time: "04:34", height_m: 0.94, type: Low }
+        - { time: "10:44", height_m: 2.58, type: High }
+        - { time: "16:37", height_m: 1.06, type: Low }
+        - { time: "22:53", height_m: 3.06, type: High }
+      "01-19":
+        - { time: "05:05", height_m: 0.83, type: Low }
+        - { time: "11:15", height_m: 2.68, type: High }
+        - { time: "17:10", height_m: 0.97, type: Low }
+        - { time: "23:22", height_m: 3.16, type: High }
+      "01-20":
+        - { time: "05:37", height_m: 0.74, type: Low }
+        - { time: "11:45", height_m: 2.77, type: High }
+        - { time: "17:43", height_m: 0.92, type: Low }
+        - { time: "23:52", height_m: 3.21, type: High }
+      "01-21":
+        - { time: "06:08", height_m: 0.68, type: Low }
+        - { time: "12:17", height_m: 2.84, type: High }
+        - { time: "18:16", height_m: 0.9, type: Low }
+      "01-22":
+        - { time: "00:22", height_m: 3.2, type: High }
+        - { time: "06:40", height_m: 0.67, type: Low }
+        - { time: "12:49", height_m: 2.88, type: High }
+        - { time: "18:49", height_m: 0.93, type: Low }
+      "01-23":
+        - { time: "00:54", height_m: 3.13, type: High }
+        - { time: "07:12", height_m: 0.7, type: Low }
+        - { time: "13:23", height_m: 2.89, type: High }
+        - { time: "19:24", height_m: 0.99, type: Low }
+      "01-24":
+        - { time: "01:26", height_m: 3.0, type: High }
+        - { time: "07:45", height_m: 0.77, type: Low }
+        - { time: "13:59", height_m: 2.85, type: High }
+        - { time: "20:00", height_m: 1.08, type: Low }
+      "01-25":
+        - { time: "02:01", height_m: 2.82, type: High }
+        - { time: "08:21", height_m: 0.89, type: Low }
+        - { time: "14:39", height_m: 2.78, type: High }
+        - { time: "20:45", height_m: 1.21, type: Low }
+      "01-26":
+        - { time: "02:43", height_m: 2.6, type: High }
+        - { time: "09:04", height_m: 1.05, type: Low }
+        - { time: "15:30", height_m: 2.66, type: High }
+        - { time: "21:45", height_m: 1.36, type: Low }
+      "01-27":
+        - { time: "03:42", height_m: 2.36, type: High }
+        - { time: "10:04", height_m: 1.24, type: Low }
+        - { time: "16:44", height_m: 2.54, type: High }
+        - { time: "23:17", height_m: 1.46, type: Low }
+      "01-28":
+        - { time: "05:24", height_m: 2.18, type: High }
+        - { time: "11:33", height_m: 1.39, type: Low }
+        - { time: "18:29", height_m: 2.51, type: High }
+      "01-29":
+        - { time: "01:16", height_m: 1.38, type: Low }
+        - { time: "07:19", height_m: 2.19, type: High }
+        - { time: "13:22", height_m: 1.38, type: Low }
+        - { time: "20:05", height_m: 2.63, type: High }
+      "01-30":
+        - { time: "02:40", height_m: 1.15, type: Low }
+        - { time: "08:57", height_m: 2.34, type: High }
+        - { time: "14:47", height_m: 1.22, type: Low }
+        - { time: "21:18", height_m: 2.84, type: High }
+      "01-31":
+        - { time: "03:36", height_m: 0.9, type: Low }
+        - { time: "09:55", height_m: 2.53, type: High }
+        - { time: "15:45", height_m: 1.03, type: Low }
+        - { time: "22:07", height_m: 3.05, type: High }
+      # February
+      "02-01":
+        - { time: "04:22", height_m: 0.69, type: Low }
+        - { time: "10:38", height_m: 2.69, type: High }
+        - { time: "16:33", height_m: 0.87, type: Low }
+        - { time: "22:46", height_m: 3.21, type: High }
+      "02-02":
+        - { time: "05:02", height_m: 0.55, type: Low }
+        - { time: "11:15", height_m: 2.83, type: High }
+        - { time: "17:14", height_m: 0.77, type: Low }
+        - { time: "23:22", height_m: 3.3, type: High }
+      "02-03":
+        - { time: "05:39", height_m: 0.47, type: Low }
+        - { time: "11:49", height_m: 2.92, type: High }
+        - { time: "17:50", height_m: 0.71, type: Low }
+        - { time: "23:55", height_m: 3.3, type: High }
+      "02-04":
+        - { time: "06:13", height_m: 0.46, type: Low }
+        - { time: "12:22", height_m: 2.97, type: High }
+        - { time: "18:24", height_m: 0.72, type: Low }
+      "02-05":
+        - { time: "00:26", height_m: 3.23, type: High }
+        - { time: "06:43", height_m: 0.52, type: Low }
+        - { time: "12:53", height_m: 2.97, type: High }
+        - { time: "18:54", height_m: 0.78, type: Low }
+      "02-06":
+        - { time: "00:55", height_m: 3.08, type: High }
+        - { time: "07:10", height_m: 0.63, type: Low }
+        - { time: "13:20", height_m: 2.92, type: High }
+        - { time: "19:23", height_m: 0.89, type: Low }
+      "02-07":
+        - { time: "01:20", height_m: 2.88, type: High }
+        - { time: "07:34", height_m: 0.78, type: Low }
+        - { time: "13:45", height_m: 2.82, type: High }
+        - { time: "19:50", height_m: 1.03, type: Low }
+      "02-08":
+        - { time: "01:44", height_m: 2.67, type: High }
+        - { time: "07:57", height_m: 0.96, type: Low }
+        - { time: "14:11", height_m: 2.69, type: High }
+        - { time: "20:18", height_m: 1.2, type: Low }
+      "02-09":
+        - { time: "02:06", height_m: 2.44, type: High }
+        - { time: "08:20", height_m: 1.16, type: Low }
+        - { time: "14:39", height_m: 2.53, type: High }
+        - { time: "20:51", height_m: 1.4, type: Low }
+      "02-10":
+        - { time: "02:32", height_m: 2.21, type: High }
+        - { time: "08:47", height_m: 1.36, type: Low }
+        - { time: "15:20", height_m: 2.35, type: High }
+        - { time: "21:42", height_m: 1.6, type: Low }
+      "02-11":
+        - { time: "03:22", height_m: 1.99, type: High }
+        - { time: "09:33", height_m: 1.57, type: Low }
+        - { time: "16:54", height_m: 2.19, type: High }
+      "02-12":
+        - { time: "01:19", height_m: 1.7, type: Low }
+        - { time: "06:51", height_m: 1.9, type: High }
+        - { time: "12:06", height_m: 1.7, type: Low }
+        - { time: "19:39", height_m: 2.24, type: High }
+      "02-13":
+        - { time: "02:45", height_m: 1.49, type: Low }
+        - { time: "08:45", height_m: 2.07, type: High }
+        - { time: "14:30", height_m: 1.56, type: Low }
+        - { time: "20:55", height_m: 2.45, type: High }
+      "02-14":
+        - { time: "03:20", height_m: 1.27, type: Low }
+        - { time: "09:28", height_m: 2.27, type: High }
+        - { time: "15:15", height_m: 1.35, type: Low }
+        - { time: "21:34", height_m: 2.68, type: High }
+      "02-15":
+        - { time: "03:48", height_m: 1.06, type: Low }
+        - { time: "10:00", height_m: 2.45, type: High }
+        - { time: "15:48", height_m: 1.16, type: Low }
+        - { time: "22:04", height_m: 2.88, type: High }
+      "02-16":
+        - { time: "04:16", height_m: 0.87, type: Low }
+        - { time: "10:28", height_m: 2.62, type: High }
+        - { time: "16:20", height_m: 0.98, type: Low }
+        - { time: "22:32", height_m: 3.06, type: High }
+      "02-17":
+        - { time: "04:45", height_m: 0.7, type: Low }
+        - { time: "10:56", height_m: 2.79, type: High }
+        - { time: "16:54", height_m: 0.84, type: Low }
+        - { time: "23:01", height_m: 3.18, type: High }
+      "02-18":
+        - { time: "05:15", height_m: 0.57, type: Low }
+        - { time: "11:25", height_m: 2.93, type: High }
+        - { time: "17:28", height_m: 0.74, type: Low }
+        - { time: "23:31", height_m: 3.24, type: High }
+      "02-19":
+        - { time: "05:47", height_m: 0.49, type: Low }
+        - { time: "11:56", height_m: 3.04, type: High }
+        - { time: "18:01", height_m: 0.69, type: Low }
+      "02-20":
+        - { time: "00:01", height_m: 3.23, type: High }
+        - { time: "06:18", height_m: 0.48, type: Low }
+        - { time: "12:27", height_m: 3.1, type: High }
+        - { time: "18:34", height_m: 0.7, type: Low }
+      "02-21":
+        - { time: "00:33", height_m: 3.15, type: High }
+        - { time: "06:49", height_m: 0.54, type: Low }
+        - { time: "12:59", height_m: 3.09, type: High }
+        - { time: "19:07", height_m: 0.77, type: Low }
+      "02-22":
+        - { time: "01:05", height_m: 2.99, type: High }
+        - { time: "07:20", height_m: 0.66, type: Low }
+        - { time: "13:31", height_m: 3.01, type: High }
+        - { time: "19:41", height_m: 0.89, type: Low }
+      "02-23":
+        - { time: "01:38", height_m: 2.78, type: High }
+        - { time: "07:51", height_m: 0.85, type: Low }
+        - { time: "14:08", height_m: 2.87, type: High }
+        - { time: "20:19", height_m: 1.07, type: Low }
+      "02-24":
+        - { time: "02:15", height_m: 2.53, type: High }
+        - { time: "08:29", height_m: 1.08, type: Low }
+        - { time: "14:52", height_m: 2.67, type: High }
+        - { time: "21:11", height_m: 1.29, type: Low }
+      "02-25":
+        - { time: "03:09", height_m: 2.25, type: High }
+        - { time: "09:20", height_m: 1.34, type: Low }
+        - { time: "16:02", height_m: 2.45, type: High }
+        - { time: "22:45", height_m: 1.5, type: Low }
+      "02-26":
+        - { time: "05:14", height_m: 2.04, type: High }
+        - { time: "11:07", height_m: 1.56, type: Low }
+        - { time: "18:13", height_m: 2.37, type: High }
+      "02-27":
+        - { time: "01:24", height_m: 1.43, type: Low }
+        - { time: "07:56", height_m: 2.13, type: High }
+        - { time: "13:35", height_m: 1.5, type: Low }
+        - { time: "20:16", height_m: 2.55, type: High }
+      "02-28":
+        - { time: "02:43", height_m: 1.15, type: Low }
+        - { time: "09:08", height_m: 2.38, type: High }
+        - { time: "14:51", height_m: 1.26, type: Low }
+        - { time: "21:16", height_m: 2.81, type: High }
+      # March
+      "03-01":
+        - { time: "03:30", height_m: 0.88, type: Low }
+        - { time: "09:50", height_m: 2.61, type: High }
+        - { time: "15:41", height_m: 1.03, type: Low }
+        - { time: "21:57", height_m: 3.03, type: High }
+      "03-02":
+        - { time: "04:08", height_m: 0.67, type: Low }
+        - { time: "10:24", height_m: 2.8, type: High }
+        - { time: "16:21", height_m: 0.85, type: Low }
+        - { time: "22:30", height_m: 3.17, type: High }
+      "03-03":
+        - { time: "04:43", height_m: 0.53, type: Low }
+        - { time: "10:54", height_m: 2.95, type: High }
+        - { time: "16:57", height_m: 0.73, type: Low }
+        - { time: "23:00", height_m: 3.23, type: High }
+      "03-04":
+        - { time: "05:14", height_m: 0.48, type: Low }
+        - { time: "11:23", height_m: 3.05, type: High }
+        - { time: "17:29", height_m: 0.67, type: Low }
+        - { time: "23:05", height_m: 3.26, type: High }
+      "03-05":
+        - { time: "05:43", height_m: 0.48, type: Low }
+        - { time: "11:50", height_m: 3.11, type: High }
+        - { time: "17:58", height_m: 0.66, type: Low }
+        - { time: "23:56", height_m: 3.14, type: High }
+      "03-06":
+        - { time: "06:08", height_m: 0.55, type: Low }
+        - { time: "12:15", height_m: 3.11, type: High }
+        - { time: "18:25", height_m: 0.71, type: Low }
+      "03-07":
+        - { time: "00:21", height_m: 3.01, type: High }
+        - { time: "06:30", height_m: 0.65, type: Low }
+        - { time: "12:40", height_m: 3.06, type: High }
+        - { time: "18:49", height_m: 0.79, type: Low }
+      "03-08":
+        - { time: "00:45", height_m: 2.85, type: High }
+        - { time: "06:52", height_m: 0.79, type: Low }
+        - { time: "13:03", height_m: 2.97, type: High }
+        - { time: "19:14", height_m: 0.92, type: Low }
+      "03-09":
+        - { time: "01:06", height_m: 2.68, type: High }
+        - { time: "07:13", height_m: 0.96, type: Low }
+        - { time: "13:26", height_m: 2.83, type: High }
+        - { time: "19:39", height_m: 1.1, type: Low }
+      "03-10":
+        - { time: "01:26", height_m: 2.48, type: High }
+        - { time: "07:33", height_m: 1.16, type: Low }
+        - { time: "13:50", height_m: 2.65, type: High }
+        - { time: "20:05", height_m: 1.31, type: Low }
+      "03-11":
+        - { time: "01:46", height_m: 2.28, type: High }
+        - { time: "07:56", height_m: 1.37, type: Low }
+        - { time: "14:20", height_m: 2.44, type: High }
+        - { time: "20:43", height_m: 1.54, type: Low }
+      "03-12":
+        - { time: "02:12", height_m: 2.07, type: High }
+        - { time: "08:27", height_m: 1.6, type: Low }
+        - { time: "15:18", height_m: 2.23, type: High }
+        - { time: "22:06", height_m: 1.76, type: Low }
+      "03-13":
+        - { time: "06:13", height_m: 1.89, type: High }
+        - { time: "10:13", height_m: 1.81, type: Low }
+        - { time: "18:48", height_m: 2.19, type: High }
+      "03-14":
+        - { time: "02:28", height_m: 1.6, type: Low }
+        - { time: "08:27", height_m: 2.1, type: High }
+        - { time: "14:04", height_m: 1.69, type: Low }
+        - { time: "20:21", height_m: 2.42, type: High }
+      "03-15":
+        - { time: "02:53", height_m: 1.35, type: Low }
+        - { time: "09:03", height_m: 2.34, type: High }
+        - { time: "14:47", height_m: 1.45, type: Low }
+        - { time: "21:01", height_m: 2.67, type: High }
+      "03-16":
+        - { time: "03:16", height_m: 1.11, type: Low }
+        - { time: "09:31", height_m: 2.57, type: High }
+        - { time: "15:21", height_m: 1.22, type: Low }
+        - { time: "21:32", height_m: 2.89, type: High }
+      "03-17":
+        - { time: "03:44", height_m: 0.88, type: Low }
+        - { time: "10:00", height_m: 2.8, type: High }
+        - { time: "15:55", height_m: 1.0, type: Low }
+        - { time: "22:02", height_m: 3.08, type: High }
+      "03-18":
+        - { time: "04:14", height_m: 0.68, type: Low }
+        - { time: "10:28", height_m: 3.01, type: High }
+        - { time: "16:30", height_m: 0.81, type: Low }
+        - { time: "22:33", height_m: 3.2, type: High }
+      "03-19":
+        - { time: "04:45", height_m: 0.54, type: Low }
+        - { time: "10:57", height_m: 3.18, type: High }
+        - { time: "17:06", height_m: 0.68, type: Low }
+      "03-20":
+        - { time: "05:19", height_m: 0.47, type: Low }
+        - { time: "11:29", height_m: 3.3, type: High }
+        - { time: "17:42", height_m: 0.61, type: Low }
+        - { time: "23:38", height_m: 3.24, type: High }
+      "03-21":
+        - { time: "05:53", height_m: 0.49, type: Low }
+        - { time: "12:00", height_m: 3.33, type: High }
+        - { time: "18:16", height_m: 0.63, type: Low }
+      "03-22":
+        - { time: "00:12", height_m: 3.14, type: High }
+        - { time: "06:26", height_m: 0.6, type: Low }
+        - { time: "12:34", height_m: 3.28, type: High }
+        - { time: "18:50", height_m: 0.72, type: Low }
+      "03-23":
+        - { time: "00:45", height_m: 2.97, type: High }
+        - { time: "06:58", height_m: 0.78, type: Low }
+        - { time: "13:09", height_m: 3.15, type: High }
+        - { time: "19:25", height_m: 0.89, type: Low }
+      "03-24":
+        - { time: "01:21", height_m: 2.74, type: High }
+        - { time: "07:30", height_m: 1.01, type: Low }
+        - { time: "13:46", height_m: 2.95, type: High }
+        - { time: "20:03", height_m: 1.11, type: Low }
+      "03-25":
+        - { time: "02:00", height_m: 2.48, type: High }
+        - { time: "08:07", height_m: 1.28, type: Low }
+        - { time: "14:33", height_m: 2.7, type: High }
+        - { time: "20:57", height_m: 1.38, type: Low }
+      "03-26":
+        - { time: "03:05", height_m: 2.21, type: High }
+        - { time: "09:03", height_m: 1.56, type: Low }
+        - { time: "15:51", height_m: 2.47, type: High }
+        - { time: "22:47", height_m: 1.58, type: Low }
+      "03-27":
+        - { time: "05:44", height_m: 2.09, type: High }
+        - { time: "11:22", height_m: 1.74, type: Low }
+        - { time: "18:11", height_m: 2.42, type: High }
+      "03-28":
+        - { time: "01:20", height_m: 1.45, type: Low }
+        - { time: "08:02", height_m: 2.3, type: High }
+        - { time: "13:35", height_m: 1.59, type: Low }
+        - { time: "20:03", height_m: 2.62, type: High }
+      "03-29":
+        - { time: "02:23", height_m: 1.19, type: Low }
+        - { time: "08:52", height_m: 2.57, type: High }
+        - { time: "14:37", height_m: 1.34, type: Low }
+        - { time: "20:55", height_m: 2.85, type: High }
+      "03-30":
+        - { time: "03:04", height_m: 0.95, type: Low }
+        - { time: "09:28", height_m: 2.8, type: High }
+        - { time: "15:21", height_m: 1.11, type: Low }
+        - { time: "21:31", height_m: 3.02, type: High }
+      "03-31":
+        - { time: "03:39", height_m: 0.78, type: Low }
+        - { time: "09:58", height_m: 2.98, type: High }
+        - { time: "15:58", height_m: 0.94, type: Low }
+        - { time: "22:02", height_m: 3.11, type: High }
+      # April
+      "04-01":
+        - { time: "04:11", height_m: 0.69, type: Low }
+        - { time: "10:24", height_m: 3.11, type: High }
+        - { time: "16:31", height_m: 0.82, type: Low }
+        - { time: "22:30", height_m: 3.14, type: High }
+      "04-02":
+        - { time: "04:41", height_m: 0.67, type: Low }
+        - { time: "10:49", height_m: 3.2, type: High }
+        - { time: "17:01", height_m: 0.76, type: Low }
+        - { time: "22:58", height_m: 3.11, type: High }
+      "04-03":
+        - { time: "05:07", height_m: 0.69, type: Low }
+        - { time: "11:15", height_m: 3.25, type: High }
+        - { time: "17:30", height_m: 0.75, type: Low }
+        - { time: "23:24", height_m: 3.04, type: High }
+      "04-04":
+        - { time: "05:31", height_m: 0.76, type: Low }
+        - { time: "11:41", height_m: 3.24, type: High }
+        - { time: "17:55", height_m: 0.79, type: Low }
+        - { time: "23:49", height_m: 2.95, type: High }
+      "04-05":
+        - { time: "05:55", height_m: 0.85, type: Low }
+        - { time: "12:06", height_m: 3.19, type: High }
+        - { time: "18:20", height_m: 0.86, type: Low }
+      "04-06":
+        - { time: "00:14", height_m: 2.84, type: High }
+        - { time: "06:17", height_m: 0.97, type: Low }
+        - { time: "12:30", height_m: 3.09, type: High }
+        - { time: "18:45", height_m: 0.99, type: Low }
+      "04-07":
+        - { time: "00:37", height_m: 2.71, type: High }
+        - { time: "06:41", height_m: 1.11, type: Low }
+        - { time: "12:57", height_m: 2.96, type: High }
+        - { time: "19:12", height_m: 1.15, type: Low }
+      "04-08":
+        - { time: "01:00", height_m: 2.55, type: High }
+        - { time: "07:03", height_m: 1.29, type: Low }
+        - { time: "13:24", height_m: 2.79, type: High }
+        - { time: "19:40", height_m: 1.35, type: Low }
+      "04-09":
+        - { time: "01:25", height_m: 2.38, type: High }
+        - { time: "07:30", height_m: 1.49, type: Low }
+        - { time: "13:56", height_m: 2.61, type: High }
+        - { time: "20:19", height_m: 1.57, type: Low }
+      "04-10":
+        - { time: "01:59", height_m: 2.2, type: High }
+        - { time: "08:08", height_m: 1.7, type: Low }
+        - { time: "14:50", height_m: 2.43, type: High }
+        - { time: "21:32", height_m: 1.76, type: Low }
+      "04-11":
+        - { time: "05:07", height_m: 2.06, type: High }
+        - { time: "09:46", height_m: 1.9, type: Low }
+        - { time: "17:12", height_m: 2.34, type: High }
+      "04-12":
+        - { time: "00:50", height_m: 1.71, type: Low }
+        - { time: "07:30", height_m: 2.24, type: High }
+        - { time: "12:55", height_m: 1.84, type: Low }
+        - { time: "19:16", height_m: 2.48, type: High }
+      "04-13":
+        - { time: "01:50", height_m: 1.47, type: Low }
+        - { time: "08:18", height_m: 2.5, type: High }
+        - { time: "14:01", height_m: 1.61, type: Low }
+        - { time: "20:12", height_m: 2.69, type: High }
+      "04-14":
+        - { time: "02:26", height_m: 1.22, type: Low }
+        - { time: "08:51", height_m: 2.76, type: High }
+        - { time: "14:45", height_m: 1.35, type: Low }
+        - { time: "20:51", height_m: 2.9, type: High }
+      "04-15":
+        - { time: "03:00", height_m: 0.98, type: Low }
+        - { time: "09:23", height_m: 3.01, type: High }
+        - { time: "15:25", height_m: 1.1, type: Low }
+        - { time: "21:27", height_m: 3.07, type: High }
+      "04-16":
+        - { time: "03:36", height_m: 0.79, type: Low }
+        - { time: "09:54", height_m: 3.23, type: High }
+        - { time: "16:03", height_m: 0.89, type: Low }
+        - { time: "22:02", height_m: 3.18, type: High }
+      "04-17":
+        - { time: "04:14", height_m: 0.67, type: Low }
+        - { time: "10:27", height_m: 3.39, type: High }
+        - { time: "16:43", height_m: 0.74, type: Low }
+        - { time: "22:38", height_m: 3.23, type: High }
+      "04-18":
+        - { time: "04:51", height_m: 0.63, type: Low }
+        - { time: "11:01", height_m: 3.48, type: High }
+        - { time: "17:21", height_m: 0.67, type: Low }
+        - { time: "23:15", height_m: 3.2, type: High }
+      "04-19":
+        - { time: "05:29", height_m: 0.68, type: Low }
+        - { time: "11:38", height_m: 3.49, type: High }
+        - { time: "17:59", height_m: 0.69, type: Low }
+        - { time: "23:53", height_m: 3.1, type: High }
+      "04-20":
+        - { time: "06:06", height_m: 0.81, type: Low }
+        - { time: "12:16", height_m: 3.41, type: High }
+        - { time: "18:37", height_m: 0.8, type: Low }
+      "04-21":
+        - { time: "00:33", height_m: 2.94, type: High }
+        - { time: "06:44", height_m: 1.0, type: Low }
+        - { time: "12:57", height_m: 3.25, type: High }
+        - { time: "19:16", height_m: 0.99, type: Low }
+      "04-22":
+        - { time: "01:16", height_m: 2.73, type: High }
+        - { time: "07:22", height_m: 1.24, type: Low }
+        - { time: "13:41", height_m: 3.04, type: High }
+        - { time: "20:01", height_m: 1.22, type: Low }
+      "04-23":
+        - { time: "02:11", height_m: 2.5, type: High }
+        - { time: "08:07", height_m: 1.49, type: Low }
+        - { time: "14:35", height_m: 2.82, type: High }
+        - { time: "21:02", height_m: 1.45, type: Low }
+      "04-24":
+        - { time: "03:41", height_m: 2.32, type: High }
+        - { time: "09:15", height_m: 1.72, type: Low }
+        - { time: "15:53", height_m: 2.63, type: High }
+        - { time: "22:53", height_m: 1.58, type: Low }
+      "04-25":
+        - { time: "05:51", height_m: 2.32, type: High }
+        - { time: "11:22", height_m: 1.82, type: Low }
+        - { time: "17:45", height_m: 2.57, type: High }
+      "04-26":
+        - { time: "00:38", height_m: 1.48, type: Low }
+        - { time: "07:27", height_m: 2.51, type: High }
+        - { time: "13:03", height_m: 1.69, type: Low }
+        - { time: "19:20", height_m: 2.68, type: High }
+      "04-27":
+        - { time: "01:40", height_m: 1.3, type: Low }
+        - { time: "08:15", height_m: 2.74, type: High }
+        - { time: "14:05", height_m: 1.48, type: Low }
+        - { time: "20:16", height_m: 2.82, type: High }
+      "04-28":
+        - { time: "02:24", height_m: 1.14, type: Low }
+        - { time: "08:51", height_m: 2.93, type: High }
+        - { time: "14:51", height_m: 1.28, type: Low }
+        - { time: "20:56", height_m: 2.92, type: High }
+      "04-29":
+        - { time: "03:01", height_m: 1.03, type: Low }
+        - { time: "09:21", height_m: 3.09, type: High }
+        - { time: "15:30", height_m: 1.12, type: Low }
+        - { time: "21:29", height_m: 2.98, type: High }
+      "04-30":
+        - { time: "03:35", height_m: 0.97, type: Low }
+        - { time: "09:48", height_m: 3.2, type: High }
+        - { time: "16:04", height_m: 1.01, type: Low }
+        - { time: "22:00", height_m: 2.99, type: High }
+      # May
+      "05-01":
+        - { time: "04:06", height_m: 0.96, type: Low }
+        - { time: "10:16", height_m: 3.27, type: High }
+        - { time: "16:35", height_m: 0.95, type: Low }
+        - { time: "22:29", height_m: 2.98, type: High }
+      "05-02":
+        - { time: "04:34", height_m: 0.99, type: Low }
+        - { time: "10:45", height_m: 3.29, type: High }
+        - { time: "17:04", height_m: 0.93, type: Low }
+        - { time: "22:58", height_m: 2.94, type: High }
+      "05-03":
+        - { time: "05:01", height_m: 1.04, type: Low }
+        - { time: "11:15", height_m: 3.28, type: High }
+        - { time: "17:31", height_m: 0.96, type: Low }
+        - { time: "23:26", height_m: 2.89, type: High }
+      "05-04":
+        - { time: "05:28", height_m: 1.1, type: Low }
+        - { time: "11:43", height_m: 3.23, type: High }
+        - { time: "18:00", height_m: 1.02, type: Low }
+        - { time: "23:53", height_m: 2.82, type: High }
+      "05-05":
+        - { time: "05:55", height_m: 1.18, type: Low }
+        - { time: "12:12", height_m: 3.16, type: High }
+        - { time: "18:28", height_m: 1.12, type: Low }
+      "05-06":
+        - { time: "00:21", height_m: 2.73, type: High }
+        - { time: "06:23", height_m: 1.29, type: Low }
+        - { time: "12:43", height_m: 3.07, type: High }
+        - { time: "18:58", height_m: 1.25, type: Low }
+      "05-07":
+        - { time: "00:51", height_m: 2.62, type: High }
+        - { time: "06:53", height_m: 1.43, type: Low }
+        - { time: "13:15", height_m: 2.95, type: High }
+        - { time: "19:31", height_m: 1.4, type: Low }
+      "05-08":
+        - { time: "01:26", height_m: 2.5, type: High }
+        - { time: "07:28", height_m: 1.59, type: Low }
+        - { time: "13:52", height_m: 2.81, type: High }
+        - { time: "20:15", height_m: 1.55, type: Low }
+      "05-09":
+        - { time: "02:21", height_m: 2.37, type: High }
+        - { time: "08:16", height_m: 1.76, type: Low }
+        - { time: "14:45", height_m: 2.68, type: High }
+        - { time: "21:17", height_m: 1.67, type: Low }
+      "05-10":
+        - { time: "04:16", height_m: 2.32, type: High }
+        - { time: "09:33", height_m: 1.9, type: Low }
+        - { time: "16:08", height_m: 2.58, type: High }
+        - { time: "23:09", height_m: 1.67, type: Low }
+      "05-11":
+        - { time: "06:11", height_m: 2.43, type: High }
+        - { time: "11:42", height_m: 1.9, type: Low }
+        - { time: "17:46", height_m: 2.58, type: High }
+      "05-12":
+        - { time: "00:30", height_m: 1.53, type: Low }
+        - { time: "07:16", height_m: 2.65, type: High }
+        - { time: "13:03", height_m: 1.72, type: Low }
+        - { time: "19:09", height_m: 2.69, type: High }
+      "05-13":
+        - { time: "01:25", height_m: 1.33, type: Low }
+        - { time: "08:01", height_m: 2.89, type: High }
+        - { time: "14:02", height_m: 1.48, type: Low }
+        - { time: "20:04", height_m: 2.84, type: High }
+      "05-14":
+        - { time: "02:13", height_m: 1.14, type: Low }
+        - { time: "08:41", height_m: 3.12, type: High }
+        - { time: "14:52", height_m: 1.23, type: Low }
+        - { time: "20:50", height_m: 2.98, type: High }
+      "05-15":
+        - { time: "02:59", height_m: 0.99, type: Low }
+        - { time: "09:20", height_m: 3.32, type: High }
+        - { time: "15:38", height_m: 1.01, type: Low }
+        - { time: "21:33", height_m: 3.07, type: High }
+      "05-16":
+        - { time: "03:43", height_m: 0.89, type: Low }
+        - { time: "10:00", height_m: 3.45, type: High }
+        - { time: "16:22", height_m: 0.86, type: Low }
+        - { time: "22:15", height_m: 3.12, type: High }
+      "05-17":
+        - { time: "04:28", height_m: 0.87, type: Low }
+        - { time: "10:41", height_m: 3.53, type: High }
+        - { time: "17:04", height_m: 0.79, type: Low }
+        - { time: "23:00", height_m: 3.11, type: High }
+      "05-18":
+        - { time: "05:11", height_m: 0.91, type: Low }
+        - { time: "11:24", height_m: 3.53, type: High }
+        - { time: "17:47", height_m: 0.8, type: Low }
+        - { time: "23:45", height_m: 3.04, type: High }
+      "05-19":
+        - { time: "05:55", height_m: 1.0, type: Low }
+        - { time: "12:09", height_m: 3.47, type: High }
+        - { time: "18:30", height_m: 0.88, type: Low }
+      "05-20":
+        - { time: "00:33", height_m: 2.93, type: High }
+        - { time: "06:39", height_m: 1.15, type: Low }
+        - { time: "12:56", height_m: 3.35, type: High }
+        - { time: "19:15", height_m: 1.03, type: Low }
+      "05-21":
+        - { time: "01:27", height_m: 2.79, type: High }
+        - { time: "07:24", height_m: 1.33, type: Low }
+        - { time: "13:44", height_m: 3.19, type: High }
+        - { time: "20:04", height_m: 1.2, type: Low }
+      "05-22":
+        - { time: "02:28", height_m: 2.65, type: High }
+        - { time: "08:15", height_m: 1.53, type: Low }
+        - { time: "14:35", height_m: 3.01, type: High }
+        - { time: "21:04", height_m: 1.36, type: Low }
+      "05-23":
+        - { time: "03:39", height_m: 2.56, type: High }
+        - { time: "09:19", height_m: 1.7, type: Low }
+        - { time: "15:34", height_m: 2.83, type: High }
+        - { time: "22:19", height_m: 1.46, type: Low }
+      "05-24":
+        - { time: "05:05", height_m: 2.55, type: High }
+        - { time: "10:44", height_m: 1.78, type: Low }
+        - { time: "16:51", height_m: 2.7, type: High }
+        - { time: "23:33", height_m: 1.48, type: Low }
+      "05-25":
+        - { time: "06:21", height_m: 2.65, type: High }
+        - { time: "12:07", height_m: 1.75, type: Low }
+        - { time: "18:15", height_m: 2.66, type: High }
+      "05-26":
+        - { time: "00:39", height_m: 1.44, type: Low }
+        - { time: "07:16", height_m: 2.78, type: High }
+        - { time: "13:20", height_m: 1.63, type: Low }
+        - { time: "19:20", height_m: 2.68, type: High }
+      "05-27":
+        - { time: "01:33", height_m: 1.37, type: Low }
+        - { time: "08:01", height_m: 2.92, type: High }
+        - { time: "14:15", height_m: 1.47, type: Low }
+        - { time: "20:12", height_m: 2.73, type: High }
+      "05-28":
+        - { time: "02:19", height_m: 1.31, type: Low }
+        - { time: "08:40", height_m: 3.04, type: High }
+        - { time: "15:00", height_m: 1.32, type: Low }
+        - { time: "20:55", height_m: 2.77, type: High }
+      "05-29":
+        - { time: "03:00", height_m: 1.27, type: Low }
+        - { time: "09:16", height_m: 3.13, type: High }
+        - { time: "15:40", height_m: 1.21, type: Low }
+        - { time: "21:33", height_m: 2.8, type: High }
+      "05-30":
+        - { time: "03:36", height_m: 1.24, type: Low }
+        - { time: "09:52", height_m: 3.18, type: High }
+        - { time: "16:15", height_m: 1.14, type: Low }
+        - { time: "22:09", height_m: 2.82, type: High }
+      "05-31":
+        - { time: "04:11", height_m: 1.23, type: Low }
+        - { time: "10:27", height_m: 3.21, type: High }
+        - { time: "16:46", height_m: 1.1, type: Low }
+        - { time: "22:43", height_m: 2.82, type: High }
+      # June
+      "06-01":
+        - { time: "04:43", height_m: 1.24, type: Low }
+        - { time: "11:00", height_m: 3.23, type: High }
+        - { time: "17:17", height_m: 1.1, type: Low }
+        - { time: "23:15", height_m: 2.81, type: High }
+      "06-02":
+        - { time: "05:15", height_m: 1.26, type: Low }
+        - { time: "11:33", height_m: 3.22, type: High }
+        - { time: "17:48", height_m: 1.13, type: Low }
+        - { time: "23:46", height_m: 2.79, type: High }
+      "06-03":
+        - { time: "05:46", height_m: 1.29, type: Low }
+        - { time: "12:06", height_m: 3.21, type: High }
+        - { time: "18:19", height_m: 1.18, type: Low }
+      "06-04":
+        - { time: "00:19", height_m: 2.76, type: High }
+        - { time: "06:19", height_m: 1.36, type: Low }
+        - { time: "12:39", height_m: 3.17, type: High }
+        - { time: "18:52", height_m: 1.24, type: Low }
+      "06-05":
+        - { time: "00:55", height_m: 2.71, type: High }
+        - { time: "06:52", height_m: 1.44, type: Low }
+        - { time: "13:12", height_m: 3.1, type: High }
+        - { time: "19:27", height_m: 1.31, type: Low }
+      "06-06":
+        - { time: "01:35", height_m: 2.65, type: High }
+        - { time: "07:29", height_m: 1.55, type: Low }
+        - { time: "13:47", height_m: 3.01, type: High }
+        - { time: "20:05", height_m: 1.39, type: Low }
+      "06-07":
+        - { time: "02:25", height_m: 2.61, type: High }
+        - { time: "08:14", height_m: 1.66, type: Low }
+        - { time: "14:28", height_m: 2.9, type: High }
+        - { time: "20:53", height_m: 1.45, type: Low }
+      "06-08":
+        - { time: "03:28", height_m: 2.59, type: High }
+        - { time: "09:11", height_m: 1.76, type: Low }
+        - { time: "15:21", height_m: 2.78, type: High }
+        - { time: "21:56", height_m: 1.49, type: Low }
+      "06-09":
+        - { time: "04:42", height_m: 2.63, type: High }
+        - { time: "10:32", height_m: 1.79, type: Low }
+        - { time: "16:32", height_m: 2.68, type: High }
+        - { time: "23:14", height_m: 1.47, type: Low }
+      "06-10":
+        - { time: "06:00", height_m: 2.74, type: High }
+        - { time: "12:01", height_m: 1.71, type: Low }
+        - { time: "18:00", height_m: 2.65, type: High }
+      "06-11":
+        - { time: "00:24", height_m: 1.39, type: Low }
+        - { time: "07:05", height_m: 2.91, type: High }
+        - { time: "13:16", height_m: 1.54, type: Low }
+        - { time: "19:18", height_m: 2.71, type: High }
+      "06-12":
+        - { time: "01:27", height_m: 1.28, type: Low }
+        - { time: "08:00", height_m: 3.08, type: High }
+        - { time: "14:21", height_m: 1.33, type: Low }
+        - { time: "20:18", height_m: 2.8, type: High }
+      "06-13":
+        - { time: "02:26", height_m: 1.18, type: Low }
+        - { time: "08:51", height_m: 3.23, type: High }
+        - { time: "15:17", height_m: 1.12, type: Low }
+        - { time: "21:13", height_m: 2.89, type: High }
+      "06-14":
+        - { time: "03:21", height_m: 1.09, type: Low }
+        - { time: "09:42", height_m: 3.36, type: High }
+        - { time: "16:07", height_m: 0.96, type: Low }
+        - { time: "22:05", height_m: 2.96, type: High }
+      "06-15":
+        - { time: "04:14", height_m: 1.04, type: Low }
+        - { time: "10:31", height_m: 3.46, type: High }
+        - { time: "16:55", height_m: 0.86, type: Low }
+        - { time: "22:56", height_m: 2.99, type: High }
+      "06-16":
+        - { time: "05:02", height_m: 1.02, type: Low }
+        - { time: "11:20", height_m: 3.51, type: High }
+        - { time: "17:41", height_m: 0.82, type: Low }
+        - { time: "23:46", height_m: 3.0, type: High }
+      "06-17":
+        - { time: "05:50", height_m: 1.05, type: Low }
+        - { time: "12:07", height_m: 3.51, type: High }
+        - { time: "18:27", height_m: 0.83, type: Low }
+      "06-18":
+        - { time: "00:36", height_m: 2.97, type: High }
+        - { time: "06:36", height_m: 1.12, type: Low }
+        - { time: "12:52", height_m: 3.46, type: High }
+        - { time: "19:12", height_m: 0.9, type: Low }
+      "06-19":
+        - { time: "01:26", height_m: 2.92, type: High }
+        - { time: "07:21", height_m: 1.23, type: Low }
+        - { time: "13:35", height_m: 3.33, type: High }
+        - { time: "19:57", height_m: 1.02, type: Low }
+      "06-20":
+        - { time: "02:15", height_m: 2.85, type: High }
+        - { time: "08:07", height_m: 1.37, type: Low }
+        - { time: "14:17", height_m: 3.16, type: High }
+        - { time: "20:42", height_m: 1.15, type: Low }
+      "06-21":
+        - { time: "03:06", height_m: 2.77, type: High }
+        - { time: "08:57", height_m: 1.51, type: Low }
+        - { time: "15:00", height_m: 2.95, type: High }
+        - { time: "21:30", height_m: 1.3, type: Low }
+      "06-22":
+        - { time: "04:03", height_m: 2.71, type: High }
+        - { time: "09:53", height_m: 1.64, type: Low }
+        - { time: "15:49", height_m: 2.73, type: High }
+        - { time: "22:24", height_m: 1.43, type: Low }
+      "06-23":
+        - { time: "05:08", height_m: 2.68, type: High }
+        - { time: "10:59", height_m: 1.71, type: Low }
+        - { time: "16:59", height_m: 2.55, type: High }
+        - { time: "23:22", height_m: 1.53, type: Low }
+      "06-24":
+        - { time: "06:10", height_m: 2.7, type: High }
+        - { time: "12:15", height_m: 1.71, type: Low }
+        - { time: "18:21", height_m: 2.46, type: High }
+      "06-25":
+        - { time: "00:27", height_m: 1.57, type: Low }
+        - { time: "07:08", height_m: 2.75, type: High }
+        - { time: "13:38", height_m: 1.63, type: Low }
+        - { time: "19:30", height_m: 2.46, type: High }
+      "06-26":
+        - { time: "01:35", height_m: 1.55, type: Low }
+        - { time: "08:02", height_m: 2.83, type: High }
+        - { time: "14:39", height_m: 1.49, type: Low }
+        - { time: "20:30", height_m: 2.52, type: High }
+      "06-27":
+        - { time: "02:33", height_m: 1.49, type: Low }
+        - { time: "08:55", height_m: 2.92, type: High }
+        - { time: "15:24", height_m: 1.36, type: Low }
+        - { time: "21:21", height_m: 2.6, type: High }
+      "06-28":
+        - { time: "03:19", height_m: 1.42, type: Low }
+        - { time: "09:40", height_m: 3.01, type: High }
+        - { time: "16:02", height_m: 1.25, type: Low }
+        - { time: "22:02", height_m: 2.67, type: High }
+      "06-29":
+        - { time: "03:59", height_m: 1.35, type: Low }
+        - { time: "10:20", height_m: 3.09, type: High }
+        - { time: "16:37", height_m: 1.18, type: Low }
+        - { time: "22:38", height_m: 2.73, type: High }
+      "06-30":
+        - { time: "04:34", height_m: 1.29, type: Low }
+        - { time: "10:55", height_m: 3.16, type: High }
+        - { time: "17:09", height_m: 1.12, type: Low }
+        - { time: "23:11", height_m: 2.77, type: High }
+      # July
+      "07-01":
+        - { time: "05:07", height_m: 1.25, type: Low }
+        - { time: "11:27", height_m: 3.22, type: High }
+        - { time: "17:40", height_m: 1.09, type: Low }
+        - { time: "23:43", height_m: 2.81, type: High }
+      "07-02":
+        - { time: "05:40", height_m: 1.24, type: Low }
+        - { time: "11:58", height_m: 3.25, type: High }
+        - { time: "18:11", height_m: 1.07, type: Low }
+      "07-03":
+        - { time: "00:15", height_m: 2.83, type: High }
+        - { time: "06:13", height_m: 1.25, type: Low }
+        - { time: "12:29", height_m: 3.26, type: High }
+        - { time: "18:42", height_m: 1.07, type: Low }
+      "07-04":
+        - { time: "00:48", height_m: 2.84, type: High }
+        - { time: "06:45", height_m: 1.3, type: Low }
+        - { time: "12:59", height_m: 3.21, type: High }
+        - { time: "19:14", height_m: 1.09, type: Low }
+      "07-05":
+        - { time: "01:24", height_m: 2.84, type: High }
+        - { time: "07:20", height_m: 1.36, type: Low }
+        - { time: "13:30", height_m: 3.13, type: High }
+        - { time: "19:46", height_m: 1.13, type: Low }
+      "07-06":
+        - { time: "02:01", height_m: 2.83, type: High }
+        - { time: "07:59", height_m: 1.43, type: Low }
+        - { time: "14:04", height_m: 3.01, type: High }
+        - { time: "20:24", height_m: 1.19, type: Low }
+      "07-07":
+        - { time: "02:45", height_m: 2.81, type: High }
+        - { time: "08:45", height_m: 1.51, type: Low }
+        - { time: "14:46", height_m: 2.85, type: High }
+        - { time: "21:10", height_m: 1.28, type: Low }
+      "07-08":
+        - { time: "03:41", height_m: 2.78, type: High }
+        - { time: "09:45", height_m: 1.59, type: Low }
+        - { time: "15:42", height_m: 2.68, type: High }
+        - { time: "22:11", height_m: 1.37, type: Low }
+      "07-09":
+        - { time: "04:51", height_m: 2.77, type: High }
+        - { time: "11:05", height_m: 1.62, type: Low }
+        - { time: "17:02", height_m: 2.54, type: High }
+        - { time: "23:29", height_m: 1.43, type: Low }
+      "07-10":
+        - { time: "06:14", height_m: 2.81, type: High }
+        - { time: "12:36", height_m: 1.56, type: Low }
+        - { time: "18:42", height_m: 2.51, type: High }
+      "07-11":
+        - { time: "00:51", height_m: 1.41, type: Low }
+        - { time: "07:30", height_m: 2.91, type: High }
+        - { time: "14:02", height_m: 1.39, type: Low }
+        - { time: "20:03", height_m: 2.59, type: High }
+      "07-12":
+        - { time: "02:09", height_m: 1.32, type: Low }
+        - { time: "08:38", height_m: 3.06, type: High }
+        - { time: "15:08", height_m: 1.17, type: Low }
+        - { time: "21:12", height_m: 2.72, type: High }
+      "07-13":
+        - { time: "03:15", height_m: 1.2, type: Low }
+        - { time: "09:39", height_m: 3.23, type: High }
+        - { time: "16:01", height_m: 0.97, type: Low }
+        - { time: "22:10", height_m: 2.84, type: High }
+      "07-14":
+        - { time: "04:09", height_m: 1.08, type: Low }
+        - { time: "10:30", height_m: 3.38, type: High }
+        - { time: "16:49", height_m: 0.81, type: Low }
+        - { time: "22:58", height_m: 2.95, type: High }
+      "07-15":
+        - { time: "04:58", height_m: 0.99, type: Low }
+        - { time: "11:15", height_m: 3.49, type: High }
+        - { time: "17:34", height_m: 0.71, type: Low }
+        - { time: "23:43", height_m: 3.03, type: High }
+      "07-16":
+        - { time: "05:44", height_m: 0.95, type: Low }
+        - { time: "11:57", height_m: 3.53, type: High }
+        - { time: "18:15", height_m: 0.68, type: Low }
+      "07-17":
+        - { time: "00:25", height_m: 3.07, type: High }
+        - { time: "06:26", height_m: 0.96, type: Low }
+        - { time: "12:36", height_m: 3.5, type: High }
+        - { time: "18:55", height_m: 0.71, type: Low }
+      "07-18":
+        - { time: "01:04", height_m: 3.06, type: High }
+        - { time: "07:06", height_m: 1.03, type: Low }
+        - { time: "13:13", height_m: 3.37, type: High }
+        - { time: "19:30", height_m: 0.81, type: Low }
+      "07-19":
+        - { time: "01:44", height_m: 3.01, type: High }
+        - { time: "07:44", height_m: 1.14, type: Low }
+        - { time: "13:46", height_m: 3.17, type: High }
+        - { time: "20:04", height_m: 0.97, type: Low }
+      "07-20":
+        - { time: "02:20", height_m: 2.92, type: High }
+        - { time: "08:20", height_m: 1.29, type: Low }
+        - { time: "14:18", height_m: 2.93, type: High }
+        - { time: "20:37", height_m: 1.16, type: Low }
+      "07-21":
+        - { time: "02:58", height_m: 2.8, type: High }
+        - { time: "09:00", height_m: 1.45, type: Low }
+        - { time: "14:52", height_m: 2.68, type: High }
+        - { time: "21:13", height_m: 1.36, type: Low }
+      "07-22":
+        - { time: "03:41", height_m: 2.67, type: High }
+        - { time: "09:49", height_m: 1.61, type: Low }
+        - { time: "15:34", height_m: 2.45, type: High }
+        - { time: "21:58", height_m: 1.55, type: Low }
+      "07-23":
+        - { time: "04:45", height_m: 2.56, type: High }
+        - { time: "11:00", height_m: 1.74, type: Low }
+        - { time: "16:54", height_m: 2.25, type: High }
+        - { time: "23:12", height_m: 1.7, type: Low }
+      "07-24":
+        - { time: "06:16", height_m: 2.51, type: High }
+        - { time: "12:58", height_m: 1.75, type: Low }
+        - { time: "18:59", height_m: 2.22, type: High }
+      "07-25":
+        - { time: "00:54", height_m: 1.74, type: Low }
+        - { time: "07:37", height_m: 2.57, type: High }
+        - { time: "14:31", height_m: 1.61, type: Low }
+        - { time: "20:29", height_m: 2.32, type: High }
+      "07-26":
+        - { time: "02:25", height_m: 1.62, type: Low }
+        - { time: "08:47", height_m: 2.7, type: High }
+        - { time: "15:18", height_m: 1.43, type: Low }
+        - { time: "21:23", height_m: 2.47, type: High }
+      "07-27":
+        - { time: "03:14", height_m: 1.48, type: Low }
+        - { time: "09:35", height_m: 2.86, type: High }
+        - { time: "15:54", height_m: 1.28, type: Low }
+        - { time: "21:59", height_m: 2.6, type: High }
+      "07-28":
+        - { time: "03:50", height_m: 1.34, type: Low }
+        - { time: "10:11", height_m: 3.01, type: High }
+        - { time: "16:25", height_m: 1.14, type: Low }
+        - { time: "22:30", height_m: 2.71, type: High }
+      "07-29":
+        - { time: "04:23", height_m: 1.23, type: Low }
+        - { time: "10:41", height_m: 3.14, type: High }
+        - { time: "16:54", height_m: 1.03, type: Low }
+        - { time: "22:59", height_m: 2.82, type: High }
+      "07-30":
+        - { time: "04:55", height_m: 1.14, type: Low }
+        - { time: "11:10", height_m: 3.24, type: High }
+        - { time: "17:23", height_m: 0.94, type: Low }
+        - { time: "23:27", height_m: 2.91, type: High }
+      "07-31":
+        - { time: "05:27", height_m: 1.08, type: Low }
+        - { time: "11:38", height_m: 3.3, type: High }
+        - { time: "17:52", height_m: 0.87, type: Low }
+        - { time: "23:57", height_m: 2.98, type: High }
+      # August
+      "08-01":
+        - { time: "05:59", height_m: 1.06, type: Low }
+        - { time: "12:07", height_m: 3.31, type: High }
+        - { time: "18:22", height_m: 0.84, type: Low }
+      "08-02":
+        - { time: "00:28", height_m: 3.03, type: High }
+        - { time: "06:31", height_m: 1.07, type: Low }
+        - { time: "12:37", height_m: 3.27, type: High }
+        - { time: "18:51", height_m: 0.86, type: Low }
+      "08-03":
+        - { time: "00:59", height_m: 3.05, type: High }
+        - { time: "07:03", height_m: 1.11, type: Low }
+        - { time: "13:07", height_m: 3.16, type: High }
+        - { time: "19:20", height_m: 0.92, type: Low }
+      "08-04":
+        - { time: "01:31", height_m: 3.02, type: High }
+        - { time: "07:38", height_m: 1.18, type: Low }
+        - { time: "13:39", height_m: 3.01, type: High }
+        - { time: "19:52", height_m: 1.03, type: Low }
+      "08-05":
+        - { time: "02:09", height_m: 2.96, type: High }
+        - { time: "08:18", height_m: 1.29, type: Low }
+        - { time: "14:16", height_m: 2.82, type: High }
+        - { time: "20:30", height_m: 1.18, type: Low }
+      "08-06":
+        - { time: "02:56", height_m: 2.85, type: High }
+        - { time: "09:09", height_m: 1.43, type: Low }
+        - { time: "15:04", height_m: 2.6, type: High }
+        - { time: "21:23", height_m: 1.36, type: Low }
+      "08-07":
+        - { time: "04:01", height_m: 2.72, type: High }
+        - { time: "10:23", height_m: 1.57, type: Low }
+        - { time: "16:25", height_m: 2.39, type: High }
+        - { time: "22:47", height_m: 1.53, type: Low }
+      "08-08":
+        - { time: "05:41", height_m: 2.65, type: High }
+        - { time: "12:15", height_m: 1.59, type: Low }
+        - { time: "18:33", height_m: 2.33, type: High }
+      "08-09":
+        - { time: "00:39", height_m: 1.56, type: Low }
+        - { time: "07:20", height_m: 2.74, type: High }
+        - { time: "14:01", height_m: 1.4, type: Low }
+        - { time: "20:19", height_m: 2.48, type: High }
+      "08-10":
+        - { time: "02:13", height_m: 1.4, type: Low }
+        - { time: "08:43", height_m: 2.95, type: High }
+        - { time: "15:07", height_m: 1.13, type: Low }
+        - { time: "21:25", height_m: 2.69, type: High }
+      "08-11":
+        - { time: "03:15", height_m: 1.2, type: Low }
+        - { time: "09:40", height_m: 3.18, type: High }
+        - { time: "15:56", height_m: 0.89, type: Low }
+        - { time: "22:11", height_m: 2.89, type: High }
+      "08-12":
+        - { time: "04:05", height_m: 1.01, type: Low }
+        - { time: "10:23", height_m: 3.36, type: High }
+        - { time: "16:39", height_m: 0.7, type: Low }
+        - { time: "22:49", height_m: 3.04, type: High }
+      "08-13":
+        - { time: "04:49", height_m: 0.89, type: Low }
+        - { time: "11:01", height_m: 3.47, type: High }
+        - { time: "17:17", height_m: 0.59, type: Low }
+        - { time: "23:25", height_m: 3.15, type: High }
+      "08-14":
+        - { time: "05:29", height_m: 0.82, type: Low }
+        - { time: "11:36", height_m: 3.5, type: High }
+        - { time: "17:53", height_m: 0.56, type: Low }
+      "08-15":
+        - { time: "00:00", height_m: 3.2, type: High }
+        - { time: "06:05", height_m: 0.81, type: Low }
+        - { time: "12:10", height_m: 3.44, type: High }
+        - { time: "18:26", height_m: 0.61, type: Low }
+      "08-16":
+        - { time: "00:31", height_m: 3.2, type: High }
+        - { time: "06:39", height_m: 0.87, type: Low }
+        - { time: "12:41", height_m: 3.3, type: High }
+        - { time: "18:55", height_m: 0.73, type: Low }
+      "08-17":
+        - { time: "01:02", height_m: 3.14, type: High }
+        - { time: "07:10", height_m: 0.98, type: Low }
+        - { time: "13:10", height_m: 3.1, type: High }
+        - { time: "19:21", height_m: 0.9, type: Low }
+      "08-18":
+        - { time: "01:30", height_m: 3.03, type: High }
+        - { time: "07:40", height_m: 1.12, type: Low }
+        - { time: "13:35", height_m: 2.87, type: High }
+        - { time: "19:45", height_m: 1.1, type: Low }
+      "08-19":
+        - { time: "01:57", height_m: 2.88, type: High }
+        - { time: "08:09", height_m: 1.3, type: Low }
+        - { time: "13:59", height_m: 2.63, type: High }
+        - { time: "20:08", height_m: 1.32, type: Low }
+      "08-20":
+        - { time: "02:26", height_m: 2.69, type: High }
+        - { time: "08:43", height_m: 1.51, type: Low }
+        - { time: "14:25", height_m: 2.4, type: High }
+        - { time: "20:34", height_m: 1.55, type: Low }
+      "08-21":
+        - { time: "03:10", height_m: 2.5, type: High }
+        - { time: "09:32", height_m: 1.73, type: Low }
+        - { time: "15:11", height_m: 2.17, type: High }
+        - { time: "21:19", height_m: 1.77, type: Low }
+      "08-22":
+        - { time: "04:56", height_m: 2.33, type: High }
+        - { time: "11:50", height_m: 1.87, type: Low }
+        - { time: "18:42", height_m: 2.07, type: High }
+      "08-23":
+        - { time: "00:29", height_m: 1.88, type: Low }
+        - { time: "07:21", height_m: 2.39, type: High }
+        - { time: "14:33", height_m: 1.68, type: Low }
+        - { time: "20:41", height_m: 2.26, type: High }
+      "08-24":
+        - { time: "02:24", height_m: 1.7, type: Low }
+        - { time: "08:39", height_m: 2.59, type: High }
+        - { time: "15:09", height_m: 1.46, type: Low }
+        - { time: "21:16", height_m: 2.46, type: High }
+      "08-25":
+        - { time: "03:03", height_m: 1.5, type: Low }
+        - { time: "09:18", height_m: 2.81, type: High }
+        - { time: "15:36", height_m: 1.27, type: Low }
+        - { time: "21:44", height_m: 2.64, type: High }
+      "08-26":
+        - { time: "03:33", height_m: 1.31, type: Low }
+        - { time: "09:48", height_m: 3.0, type: High }
+        - { time: "16:02", height_m: 1.08, type: Low }
+        - { time: "22:10", height_m: 2.81, type: High }
+      "08-27":
+        - { time: "04:02", height_m: 1.15, type: Low }
+        - { time: "10:15", height_m: 3.16, type: High }
+        - { time: "16:28", height_m: 0.92, type: Low }
+        - { time: "22:35", height_m: 2.96, type: High }
+      "08-28":
+        - { time: "04:33", height_m: 1.02, type: Low }
+        - { time: "10:43", height_m: 3.27, type: High }
+        - { time: "16:56", height_m: 0.79, type: Low }
+        - { time: "23:01", height_m: 3.1, type: High }
+      "08-29":
+        - { time: "05:05", height_m: 0.92, type: Low }
+        - { time: "11:11", height_m: 3.34, type: High }
+        - { time: "17:25", height_m: 0.71, type: Low }
+        - { time: "23:30", height_m: 3.21, type: High }
+      "08-30":
+        - { time: "05:38", height_m: 0.87, type: Low }
+        - { time: "11:41", height_m: 3.34, type: High }
+        - { time: "17:55", height_m: 0.69, type: Low }
+      "08-31":
+        - { time: "00:00", height_m: 3.26, type: High }
+        - { time: "06:11", height_m: 0.87, type: Low }
+        - { time: "12:12", height_m: 3.27, type: High }
+        - { time: "18:25", height_m: 0.74, type: Low }
+      # September
+      "09-01":
+        - { time: "00:31", height_m: 3.25, type: High }
+        - { time: "06:44", height_m: 0.92, type: Low }
+        - { time: "12:44", height_m: 3.15, type: High }
+        - { time: "18:54", height_m: 0.85, type: Low }
+      "09-02":
+        - { time: "01:03", height_m: 3.18, type: High }
+        - { time: "07:16", height_m: 1.03, type: Low }
+        - { time: "13:15", height_m: 2.96, type: High }
+        - { time: "19:24", height_m: 1.02, type: Low }
+      "09-03":
+        - { time: "01:39", height_m: 3.04, type: High }
+        - { time: "07:54", height_m: 1.19, type: Low }
+        - { time: "13:51", height_m: 2.74, type: High }
+        - { time: "19:59", height_m: 1.23, type: Low }
+      "09-04":
+        - { time: "02:23", height_m: 2.85, type: High }
+        - { time: "08:42", height_m: 1.4, type: Low }
+        - { time: "14:38", height_m: 2.49, type: High }
+        - { time: "20:47", height_m: 1.49, type: Low }
+      "09-05":
+        - { time: "03:30", height_m: 2.64, type: High }
+        - { time: "10:00", height_m: 1.61, type: Low }
+        - { time: "16:19", height_m: 2.26, type: High }
+        - { time: "22:27", height_m: 1.71, type: Low }
+      "09-06":
+        - { time: "05:32", height_m: 2.54, type: High }
+        - { time: "12:26", height_m: 1.63, type: Low }
+        - { time: "19:08", height_m: 2.3, type: High }
+      "09-07":
+        - { time: "00:59", height_m: 1.67, type: Low }
+        - { time: "07:30", height_m: 2.69, type: High }
+        - { time: "14:06", height_m: 1.37, type: Low }
+        - { time: "20:36", height_m: 2.56, type: High }
+      "09-08":
+        - { time: "02:18", height_m: 1.42, type: Low }
+        - { time: "08:42", height_m: 2.96, type: High }
+        - { time: "14:59", height_m: 1.07, type: Low }
+        - { time: "21:22", height_m: 2.82, type: High }
+      "09-09":
+        - { time: "03:10", height_m: 1.17, type: Low }
+        - { time: "09:28", height_m: 3.19, type: High }
+        - { time: "15:41", height_m: 0.83, type: Low }
+        - { time: "21:58", height_m: 3.04, type: High }
+      "09-10":
+        - { time: "03:53", height_m: 0.96, type: Low }
+        - { time: "10:04", height_m: 3.34, type: High }
+        - { time: "16:17", height_m: 0.66, type: Low }
+        - { time: "22:29", height_m: 3.2, type: High }
+      "09-11":
+        - { time: "04:31", height_m: 0.83, type: Low }
+        - { time: "10:38", height_m: 3.41, type: High }
+        - { time: "16:51", height_m: 0.59, type: Low }
+        - { time: "22:59", height_m: 3.3, type: High }
+      "09-12":
+        - { time: "05:06", height_m: 0.76, type: Low }
+        - { time: "11:09", height_m: 3.4, type: High }
+        - { time: "17:22", height_m: 0.6, type: Low }
+        - { time: "23:27", height_m: 3.35, type: High }
+      "09-13":
+        - { time: "05:38", height_m: 0.76, type: Low }
+        - { time: "11:39", height_m: 3.32, type: High }
+        - { time: "17:50", height_m: 0.68, type: Low }
+        - { time: "23:55", height_m: 3.33, type: High }
+      "09-14":
+        - { time: "06:08", height_m: 0.81, type: Low }
+        - { time: "12:07", height_m: 3.18, type: High }
+        - { time: "18:15", height_m: 0.81, type: Low }
+      "09-15":
+        - { time: "00:21", height_m: 3.25, type: High }
+        - { time: "06:34", height_m: 0.92, type: Low }
+        - { time: "12:32", height_m: 3.01, type: High }
+        - { time: "18:38", height_m: 0.96, type: Low }
+      "09-16":
+        - { time: "00:45", height_m: 3.13, type: High }
+        - { time: "07:00", height_m: 1.06, type: Low }
+        - { time: "12:55", height_m: 2.82, type: High }
+        - { time: "18:59", height_m: 1.15, type: Low }
+      "09-17":
+        - { time: "01:09", height_m: 2.96, type: High }
+        - { time: "07:27", height_m: 1.25, type: Low }
+        - { time: "13:16", height_m: 2.62, type: High }
+        - { time: "19:19", height_m: 1.35, type: Low }
+      "09-18":
+        - { time: "01:33", height_m: 2.77, type: High }
+        - { time: "07:56", height_m: 1.46, type: Low }
+        - { time: "13:37", height_m: 2.42, type: High }
+        - { time: "19:41", height_m: 1.57, type: Low }
+      "09-19":
+        - { time: "02:03", height_m: 2.55, type: High }
+        - { time: "08:35", height_m: 1.7, type: Low }
+        - { time: "14:02", height_m: 2.21, type: High }
+        - { time: "20:07", height_m: 1.81, type: Low }
+      "09-20":
+        - { time: "03:28", height_m: 2.33, type: High }
+        - { time: "10:09", height_m: 1.92, type: Low }
+        - { time: "18:25", height_m: 2.07, type: High }
+        - { time: "23:49", height_m: 2.01, type: Low }
+      "09-21":
+        - { time: "06:45", height_m: 2.34, type: High }
+        - { time: "14:14", height_m: 1.75, type: Low }
+        - { time: "20:24", height_m: 2.3, type: High }
+      "09-22":
+        - { time: "02:04", height_m: 1.8, type: Low }
+        - { time: "08:06", height_m: 2.56, type: High }
+        - { time: "14:40", height_m: 1.52, type: Low }
+        - { time: "20:51", height_m: 2.54, type: High }
+      "09-23":
+        - { time: "02:38", height_m: 1.57, type: Low }
+        - { time: "08:45", height_m: 2.79, type: High }
+        - { time: "15:02", height_m: 1.3, type: Low }
+        - { time: "21:16", height_m: 2.76, type: High }
+      "09-24":
+        - { time: "03:07", height_m: 1.35, type: Low }
+        - { time: "09:15", height_m: 2.98, type: High }
+        - { time: "15:27", height_m: 1.09, type: Low }
+        - { time: "21:41", height_m: 2.97, type: High }
+      "09-25":
+        - { time: "03:36", height_m: 1.14, type: Low }
+        - { time: "09:43", height_m: 3.15, type: High }
+        - { time: "15:54", height_m: 0.9, type: Low }
+        - { time: "22:06", height_m: 3.16, type: High }
+      "09-26":
+        - { time: "04:08", height_m: 0.97, type: Low }
+        - { time: "10:12", height_m: 3.26, type: High }
+        - { time: "16:24", height_m: 0.76, type: Low }
+        - { time: "22:32", height_m: 3.32, type: High }
+      "09-27":
+        - { time: "04:42", height_m: 0.83, type: Low }
+        - { time: "10:43", height_m: 3.32, type: High }
+        - { time: "16:56", height_m: 0.69, type: Low }
+        - { time: "23:02", height_m: 3.43, type: High }
+      "09-28":
+        - { time: "05:16", height_m: 0.76, type: Low }
+        - { time: "11:15", height_m: 3.32, type: High }
+        - { time: "17:29", height_m: 0.69, type: Low }
+        - { time: "23:33", height_m: 3.46, type: High }
+      "09-29":
+        - { time: "05:51", height_m: 0.77, type: Low }
+        - { time: "11:48", height_m: 3.25, type: High }
+        - { time: "18:00", height_m: 0.78, type: Low }
+      "09-30":
+        - { time: "00:06", height_m: 3.42, type: High }
+        - { time: "06:25", height_m: 0.85, type: Low }
+        - { time: "12:23", height_m: 3.1, type: High }
+        - { time: "18:32", height_m: 0.93, type: Low }
+      # October
+      "10-01":
+        - { time: "00:42", height_m: 3.29, type: High }
+        - { time: "07:00", height_m: 1.0, type: Low }
+        - { time: "12:59", height_m: 2.9, type: High }
+        - { time: "19:04", height_m: 1.14, type: Low }
+      "10-02":
+        - { time: "01:19", height_m: 3.09, type: High }
+        - { time: "07:40", height_m: 1.21, type: Low }
+        - { time: "13:39", height_m: 2.67, type: High }
+        - { time: "19:42", height_m: 1.39, type: Low }
+      "10-03":
+        - { time: "02:06", height_m: 2.85, type: High }
+        - { time: "08:31", height_m: 1.45, type: Low }
+        - { time: "14:36", height_m: 2.41, type: High }
+        - { time: "20:35", height_m: 1.66, type: Low }
+      "10-04":
+        - { time: "03:24", height_m: 2.63, type: High }
+        - { time: "10:02", height_m: 1.66, type: Low }
+        - { time: "16:56", height_m: 2.26, type: High }
+        - { time: "22:43", height_m: 1.86, type: Low }
+      "10-05":
+        - { time: "05:32", height_m: 2.56, type: High }
+        - { time: "12:30", height_m: 1.6, type: Low }
+        - { time: "19:26", height_m: 2.44, type: High }
+      "10-06":
+        - { time: "01:02", height_m: 1.72, type: Low }
+        - { time: "07:24", height_m: 2.73, type: High }
+        - { time: "13:47", height_m: 1.35, type: Low }
+        - { time: "20:23", height_m: 2.72, type: High }
+      "10-07":
+        - { time: "02:08", height_m: 1.46, type: Low }
+        - { time: "08:23", height_m: 2.96, type: High }
+        - { time: "14:34", height_m: 1.09, type: Low }
+        - { time: "21:01", height_m: 2.97, type: High }
+      "10-08":
+        - { time: "02:53", height_m: 1.2, type: Low }
+        - { time: "09:04", height_m: 3.13, type: High }
+        - { time: "15:13", height_m: 0.9, type: Low }
+        - { time: "21:33", height_m: 3.17, type: High }
+      "10-09":
+        - { time: "03:32", height_m: 1.0, type: Low }
+        - { time: "09:38", height_m: 3.23, type: High }
+        - { time: "15:47", height_m: 0.79, type: Low }
+        - { time: "22:00", height_m: 3.31, type: High }
+      "10-10":
+        - { time: "04:08", height_m: 0.87, type: Low }
+        - { time: "10:10", height_m: 3.26, type: High }
+        - { time: "16:20", height_m: 0.75, type: Low }
+        - { time: "22:28", height_m: 3.39, type: High }
+      "10-11":
+        - { time: "04:41", height_m: 0.81, type: Low }
+        - { time: "10:39", height_m: 3.23, type: High }
+        - { time: "16:49", height_m: 0.79, type: Low }
+        - { time: "22:55", height_m: 3.42, type: High }
+      "10-12":
+        - { time: "05:11", height_m: 0.8, type: Low }
+        - { time: "11:08", height_m: 3.16, type: High }
+        - { time: "17:16", height_m: 0.87, type: Low }
+        - { time: "23:21", height_m: 3.38, type: High }
+      "10-13":
+        - { time: "05:39", height_m: 0.85, type: Low }
+        - { time: "11:36", height_m: 3.05, type: High }
+        - { time: "17:41", height_m: 0.97, type: Low }
+        - { time: "23:47", height_m: 3.3, type: High }
+      "10-14":
+        - { time: "06:05", height_m: 0.95, type: Low }
+        - { time: "12:02", height_m: 2.93, type: High }
+        - { time: "18:04", height_m: 1.1, type: Low }
+      "10-15":
+        - { time: "00:14", height_m: 3.18, type: High }
+        - { time: "06:30", height_m: 1.08, type: Low }
+        - { time: "12:27", height_m: 2.79, type: High }
+        - { time: "18:27", height_m: 1.24, type: Low }
+      "10-16":
+        - { time: "00:39", height_m: 3.03, type: High }
+        - { time: "06:59", height_m: 1.25, type: Low }
+        - { time: "12:50", height_m: 2.64, type: High }
+        - { time: "18:51", height_m: 1.42, type: Low }
+      "10-17":
+        - { time: "01:06", height_m: 2.86, type: High }
+        - { time: "07:30", height_m: 1.45, type: Low }
+        - { time: "13:16", height_m: 2.47, type: High }
+        - { time: "19:16", height_m: 1.61, type: Low }
+      "10-18":
+        - { time: "01:39", height_m: 2.66, type: High }
+        - { time: "08:10", height_m: 1.66, type: Low }
+        - { time: "13:51", height_m: 2.29, type: High }
+        - { time: "19:53", height_m: 1.83, type: Low }
+      "10-19":
+        - { time: "02:37", height_m: 2.47, type: High }
+        - { time: "09:19", height_m: 1.85, type: Low }
+        - { time: "16:53", height_m: 2.17, type: High }
+        - { time: "21:31", height_m: 2.03, type: Low }
+      "10-20":
+        - { time: "05:07", height_m: 2.39, type: High }
+        - { time: "12:24", height_m: 1.82, type: Low }
+        - { time: "19:19", height_m: 2.35, type: High }
+      "10-21":
+        - { time: "01:02", height_m: 1.92, type: Low }
+        - { time: "07:02", height_m: 2.52, type: High }
+        - { time: "13:33", height_m: 1.61, type: Low }
+        - { time: "20:06", height_m: 2.59, type: High }
+      "10-22":
+        - { time: "01:56", height_m: 1.69, type: Low }
+        - { time: "07:55", height_m: 2.71, type: High }
+        - { time: "14:09", height_m: 1.38, type: Low }
+        - { time: "20:37", height_m: 2.84, type: High }
+      "10-23":
+        - { time: "02:31", height_m: 1.44, type: Low }
+        - { time: "08:33", height_m: 2.9, type: High }
+        - { time: "14:42", height_m: 1.16, type: Low }
+        - { time: "21:06", height_m: 3.07, type: High }
+      "10-24":
+        - { time: "03:06", height_m: 1.19, type: Low }
+        - { time: "09:08", height_m: 3.05, type: High }
+        - { time: "15:15", height_m: 0.98, type: Low }
+        - { time: "21:34", height_m: 3.28, type: High }
+      "10-25":
+        - { time: "03:42", height_m: 0.98, type: Low }
+        - { time: "09:42", height_m: 3.16, type: High }
+        - { time: "15:51", height_m: 0.84, type: Low }
+        - { time: "22:04", height_m: 3.43, type: High }
+      "10-26":
+        - { time: "04:19", height_m: 0.82, type: Low }
+        - { time: "10:17", height_m: 3.22, type: High }
+        - { time: "16:29", height_m: 0.78, type: Low }
+        - { time: "22:37", height_m: 3.53, type: High }
+      "10-27":
+        - { time: "04:57", height_m: 0.74, type: Low }
+        - { time: "10:53", height_m: 3.23, type: High }
+        - { time: "17:06", height_m: 0.79, type: Low }
+        - { time: "23:13", height_m: 3.55, type: High }
+      "10-28":
+        - { time: "05:34", height_m: 0.75, type: Low }
+        - { time: "11:31", height_m: 3.16, type: High }
+        - { time: "17:43", height_m: 0.88, type: Low }
+        - { time: "23:50", height_m: 3.48, type: High }
+      "10-29":
+        - { time: "06:14", height_m: 0.83, type: Low }
+        - { time: "12:12", height_m: 3.03, type: High }
+        - { time: "18:21", height_m: 1.04, type: Low }
+      "10-30":
+        - { time: "00:30", height_m: 3.34, type: High }
+        - { time: "06:54", height_m: 1.0, type: Low }
+        - { time: "12:55", height_m: 2.85, type: High }
+        - { time: "19:00", height_m: 1.25, type: Low }
+      "10-31":
+        - { time: "01:15", height_m: 3.15, type: High }
+        - { time: "07:39", height_m: 1.2, type: Low }
+        - { time: "13:47", height_m: 2.65, type: High }
+        - { time: "19:45", height_m: 1.49, type: Low }
+      # November
+      "11-01":
+        - { time: "02:08", height_m: 2.92, type: High }
+        - { time: "08:37", height_m: 1.42, type: Low }
+        - { time: "15:04", height_m: 2.46, type: High }
+        - { time: "20:46", height_m: 1.72, type: Low }
+      "11-02":
+        - { time: "03:23", height_m: 2.72, type: High }
+        - { time: "10:07", height_m: 1.56, type: Low }
+        - { time: "16:59", height_m: 2.41, type: High }
+        - { time: "22:44", height_m: 1.85, type: Low }
+      "11-03":
+        - { time: "05:06", height_m: 2.63, type: High }
+        - { time: "11:50", height_m: 1.53, type: Low }
+        - { time: "18:49", height_m: 2.56, type: High }
+      "11-04":
+        - { time: "00:31", height_m: 1.74, type: Low }
+        - { time: "06:44", height_m: 2.7, type: High }
+        - { time: "13:03", height_m: 1.38, type: Low }
+        - { time: "19:48", height_m: 2.78, type: High }
+      "11-05":
+        - { time: "01:39", height_m: 1.53, type: Low }
+        - { time: "07:46", height_m: 2.83, type: High }
+        - { time: "13:55", height_m: 1.22, type: Low }
+        - { time: "20:29", height_m: 2.99, type: High }
+      "11-06":
+        - { time: "02:28", height_m: 1.3, type: Low }
+        - { time: "08:31", height_m: 2.93, type: High }
+        - { time: "14:37", height_m: 1.09, type: Low }
+        - { time: "21:00", height_m: 3.15, type: High }
+      "11-07":
+        - { time: "03:08", height_m: 1.11, type: Low }
+        - { time: "09:09", height_m: 2.99, type: High }
+        - { time: "15:15", height_m: 1.02, type: Low }
+        - { time: "21:30", height_m: 3.27, type: High }
+      "11-08":
+        - { time: "03:45", height_m: 0.98, type: Low }
+        - { time: "09:42", height_m: 3.01, type: High }
+        - { time: "15:49", height_m: 1.0, type: Low }
+        - { time: "22:00", height_m: 3.33, type: High }
+      "11-09":
+        - { time: "04:17", height_m: 0.91, type: Low }
+        - { time: "10:15", height_m: 2.99, type: High }
+        - { time: "16:21", height_m: 1.02, type: Low }
+        - { time: "22:30", height_m: 3.34, type: High }
+      "11-10":
+        - { time: "04:48", height_m: 0.9, type: Low }
+        - { time: "10:45", height_m: 2.95, type: High }
+        - { time: "16:51", height_m: 1.06, type: Low }
+        - { time: "22:59", height_m: 3.32, type: High }
+      "11-11":
+        - { time: "05:17", height_m: 0.93, type: Low }
+        - { time: "11:16", height_m: 2.9, type: High }
+        - { time: "17:18", height_m: 1.12, type: Low }
+        - { time: "23:29", height_m: 3.26, type: High }
+      "11-12":
+        - { time: "05:46", height_m: 1.0, type: Low }
+        - { time: "11:45", height_m: 2.83, type: High }
+        - { time: "17:45", height_m: 1.19, type: Low }
+        - { time: "23:58", height_m: 3.18, type: High }
+      "11-13":
+        - { time: "06:15", height_m: 1.1, type: Low }
+        - { time: "12:15", height_m: 2.75, type: High }
+        - { time: "18:14", height_m: 1.29, type: Low }
+      "11-14":
+        - { time: "00:28", height_m: 3.07, type: High }
+        - { time: "06:45", height_m: 1.23, type: Low }
+        - { time: "12:45", height_m: 2.65, type: High }
+        - { time: "18:44", height_m: 1.42, type: Low }
+      "11-15":
+        - { time: "01:00", height_m: 2.95, type: High }
+        - { time: "07:19", height_m: 1.36, type: Low }
+        - { time: "13:20", height_m: 2.54, type: High }
+        - { time: "19:16", height_m: 1.57, type: Low }
+      "11-16":
+        - { time: "01:34", height_m: 2.8, type: High }
+        - { time: "08:00", height_m: 1.51, type: Low }
+        - { time: "14:09", height_m: 2.43, type: High }
+        - { time: "19:58", height_m: 1.74, type: Low }
+      "11-17":
+        - { time: "02:21", height_m: 2.65, type: High }
+        - { time: "08:53", height_m: 1.63, type: Low }
+        - { time: "15:39", height_m: 2.35, type: High }
+        - { time: "21:04", height_m: 1.89, type: Low }
+      "11-18":
+        - { time: "03:40", height_m: 2.52, type: High }
+        - { time: "10:21", height_m: 1.68, type: Low }
+        - { time: "17:33", height_m: 2.4, type: High }
+        - { time: "23:21", height_m: 1.93, type: Low }
+      "11-19":
+        - { time: "05:17", height_m: 2.48, type: High }
+        - { time: "11:56", height_m: 1.6, type: Low }
+        - { time: "18:57", height_m: 2.58, type: High }
+      "11-20":
+        - { time: "00:48", height_m: 1.76, type: Low }
+        - { time: "06:47", height_m: 2.56, type: High }
+        - { time: "12:58", height_m: 1.44, type: Low }
+        - { time: "19:45", height_m: 2.8, type: High }
+      "11-21":
+        - { time: "01:47", height_m: 1.52, type: Low }
+        - { time: "07:45", height_m: 2.7, type: High }
+        - { time: "13:49", height_m: 1.26, type: Low }
+        - { time: "20:25", height_m: 3.02, type: High }
+      "11-22":
+        - { time: "02:34", height_m: 1.26, type: Low }
+        - { time: "08:32", height_m: 2.83, type: High }
+        - { time: "14:36", height_m: 1.1, type: Low }
+        - { time: "21:02", height_m: 3.22, type: High }
+      "11-23":
+        - { time: "03:17", height_m: 1.03, type: Low }
+        - { time: "09:15", height_m: 2.95, type: High }
+        - { time: "15:22", height_m: 0.98, type: Low }
+        - { time: "21:41", height_m: 3.37, type: High }
+      "11-24":
+        - { time: "04:00", height_m: 0.86, type: Low }
+        - { time: "09:58", height_m: 3.02, type: High }
+        - { time: "16:07", height_m: 0.91, type: Low }
+        - { time: "22:20", height_m: 3.46, type: High }
+      "11-25":
+        - { time: "04:42", height_m: 0.76, type: Low }
+        - { time: "10:40", height_m: 3.05, type: High }
+        - { time: "16:51", height_m: 0.89, type: Low }
+        - { time: "23:01", height_m: 3.5, type: High }
+      "11-26":
+        - { time: "05:25", height_m: 0.73, type: Low }
+        - { time: "11:26", height_m: 3.03, type: High }
+        - { time: "17:35", height_m: 0.94, type: Low }
+        - { time: "23:45", height_m: 3.47, type: High }
+      "11-27":
+        - { time: "06:08", height_m: 0.78, type: Low }
+        - { time: "12:14", height_m: 2.96, type: High }
+        - { time: "18:18", height_m: 1.04, type: Low }
+      "11-28":
+        - { time: "00:30", height_m: 3.38, type: High }
+        - { time: "06:53", height_m: 0.88, type: Low }
+        - { time: "13:04", height_m: 2.85, type: High }
+        - { time: "19:02", height_m: 1.19, type: Low }
+      "11-29":
+        - { time: "01:17", height_m: 3.23, type: High }
+        - { time: "07:41", height_m: 1.03, type: Low }
+        - { time: "14:00", height_m: 2.73, type: High }
+        - { time: "19:50", height_m: 1.37, type: Low }
+      "11-30":
+        - { time: "02:07", height_m: 3.04, type: High }
+        - { time: "08:35", height_m: 1.18, type: Low }
+        - { time: "15:00", height_m: 2.62, type: High }
+        - { time: "20:46", height_m: 1.55, type: Low }
+      # December
+      "12-01":
+        - { time: "03:02", height_m: 2.84, type: High }
+        - { time: "09:39", height_m: 1.31, type: Low }
+        - { time: "16:15", height_m: 2.56, type: High }
+        - { time: "22:03", height_m: 1.68, type: Low }
+      "12-02":
+        - { time: "04:12", height_m: 2.66, type: High }
+        - { time: "10:49", height_m: 1.39, type: Low }
+        - { time: "17:38", height_m: 2.59, type: High }
+        - { time: "23:30", height_m: 1.69, type: Low }
+      "12-03":
+        - { time: "05:39", height_m: 2.57, type: High }
+        - { time: "11:57", height_m: 1.4, type: Low }
+        - { time: "18:45", height_m: 2.69, type: High }
+      "12-04":
+        - { time: "00:53", height_m: 1.59, type: Low }
+        - { time: "06:53", height_m: 2.55, type: High }
+        - { time: "13:00", height_m: 1.37, type: Low }
+        - { time: "19:39", height_m: 2.81, type: High }
+      "12-05":
+        - { time: "01:57", height_m: 1.42, type: Low }
+        - { time: "07:51", height_m: 2.59, type: High }
+        - { time: "13:57", height_m: 1.32, type: Low }
+        - { time: "20:24", height_m: 2.93, type: High }
+      "12-06":
+        - { time: "02:45", height_m: 1.25, type: Low }
+        - { time: "08:41", height_m: 2.64, type: High }
+        - { time: "14:45", height_m: 1.26, type: Low }
+        - { time: "21:03", height_m: 3.03, type: High }
+      "12-07":
+        - { time: "03:26", height_m: 1.11, type: Low }
+        - { time: "09:23", height_m: 2.68, type: High }
+        - { time: "15:27", height_m: 1.21, type: Low }
+        - { time: "21:41", height_m: 3.1, type: High }
+      "12-08":
+        - { time: "04:02", height_m: 1.02, type: Low }
+        - { time: "10:01", height_m: 2.71, type: High }
+        - { time: "16:04", height_m: 1.18, type: Low }
+        - { time: "22:17", height_m: 3.14, type: High }
+      "12-09":
+        - { time: "04:36", height_m: 0.98, type: Low }
+        - { time: "10:37", height_m: 2.74, type: High }
+        - { time: "16:38", height_m: 1.16, type: Low }
+        - { time: "22:51", height_m: 3.16, type: High }
+      "12-10":
+        - { time: "05:07", height_m: 0.97, type: Low }
+        - { time: "11:11", height_m: 2.74, type: High }
+        - { time: "17:10", height_m: 1.15, type: Low }
+        - { time: "23:23", height_m: 3.17, type: High }
+      "12-11":
+        - { time: "05:38", height_m: 0.99, type: Low }
+        - { time: "11:44", height_m: 2.74, type: High }
+        - { time: "17:41", height_m: 1.17, type: Low }
+        - { time: "23:54", height_m: 3.15, type: High }
+      "12-12":
+        - { time: "06:09", height_m: 1.02, type: Low }
+        - { time: "12:15", height_m: 2.72, type: High }
+        - { time: "18:11", height_m: 1.21, type: Low }
+      "12-13":
+        - { time: "00:25", height_m: 3.11, type: High }
+        - { time: "06:40", height_m: 1.07, type: Low }
+        - { time: "12:48", height_m: 2.69, type: High }
+        - { time: "18:42", height_m: 1.29, type: Low }
+      "12-14":
+        - { time: "00:55", height_m: 3.03, type: High }
+        - { time: "07:12", height_m: 1.14, type: Low }
+        - { time: "13:23", height_m: 2.64, type: High }
+        - { time: "19:14", height_m: 1.38, type: Low }
+      "12-15":
+        - { time: "01:26", height_m: 2.93, type: High }
+        - { time: "07:45", height_m: 1.21, type: Low }
+        - { time: "14:01", height_m: 2.6, type: High }
+        - { time: "19:50", height_m: 1.49, type: Low }
+      "12-16":
+        - { time: "02:00", height_m: 2.8, type: High }
+        - { time: "08:24", height_m: 1.29, type: Low }
+        - { time: "14:48", height_m: 2.55, type: High }
+        - { time: "20:37", height_m: 1.61, type: Low }
+      "12-17":
+        - { time: "02:45", height_m: 2.65, type: High }
+        - { time: "09:14", height_m: 1.36, type: Low }
+        - { time: "15:49", height_m: 2.53, type: High }
+        - { time: "21:44", height_m: 1.7, type: Low }
+      "12-18":
+        - { time: "03:48", height_m: 2.5, type: High }
+        - { time: "10:19", height_m: 1.41, type: Low }
+        - { time: "17:08", height_m: 2.55, type: High }
+        - { time: "23:23", height_m: 1.69, type: Low }
+      "12-19":
+        - { time: "05:16", height_m: 2.41, type: High }
+        - { time: "11:39", height_m: 1.41, type: Low }
+        - { time: "18:33", height_m: 2.66, type: High }
+      "12-20":
+        - { time: "00:51", height_m: 1.54, type: Low }
+        - { time: "06:50", height_m: 2.44, type: High }
+        - { time: "12:52", height_m: 1.33, type: Low }
+        - { time: "19:39", height_m: 2.82, type: High }
+      "12-21":
+        - { time: "02:02", height_m: 1.32, type: Low }
+        - { time: "07:59", height_m: 2.54, type: High }
+        - { time: "14:00", height_m: 1.22, type: Low }
+        - { time: "20:35", height_m: 3.0, type: High }
+      "12-22":
+        - { time: "02:59", height_m: 1.08, type: Low }
+        - { time: "08:57", height_m: 2.66, type: High }
+        - { time: "15:01", height_m: 1.09, type: Low }
+        - { time: "21:27", height_m: 3.16, type: High }
+      "12-23":
+        - { time: "03:48", height_m: 0.88, type: Low }
+        - { time: "09:50", height_m: 2.77, type: High }
+        - { time: "15:56", height_m: 0.98, type: Low }
+        - { time: "22:15", height_m: 3.3, type: High }
+      "12-24":
+        - { time: "04:35", height_m: 0.73, type: Low }
+        - { time: "10:41", height_m: 2.86, type: High }
+        - { time: "16:45", height_m: 0.9, type: Low }
+        - { time: "23:00", height_m: 3.4, type: High }
+      "12-25":
+        - { time: "05:20", height_m: 0.64, type: Low }
+        - { time: "11:30", height_m: 2.91, type: High }
+        - { time: "17:31", height_m: 0.87, type: Low }
+        - { time: "23:45", height_m: 3.44, type: High }
+      "12-26":
+        - { time: "06:05", height_m: 0.61, type: Low }
+        - { time: "12:16", height_m: 2.94, type: High }
+        - { time: "18:16", height_m: 0.89, type: Low }
+      "12-27":
+        - { time: "00:28", height_m: 3.41, type: High }
+        - { time: "06:49", height_m: 0.64, type: Low }
+        - { time: "13:02", height_m: 2.92, type: High }
+        - { time: "19:00", height_m: 0.97, type: Low }
+      "12-28":
+        - { time: "01:09", height_m: 3.31, type: High }
+        - { time: "07:32", height_m: 0.73, type: Low }
+        - { time: "13:47", height_m: 2.86, type: High }
+        - { time: "19:43", height_m: 1.09, type: Low }
+      "12-29":
+        - { time: "01:50", height_m: 3.12, type: High }
+        - { time: "08:15", height_m: 0.86, type: Low }
+        - { time: "14:32", height_m: 2.78, type: High }
+        - { time: "20:27", height_m: 1.24, type: Low }
+      "12-30":
+        - { time: "02:30", height_m: 2.89, type: High }
+        - { time: "08:58", height_m: 1.02, type: Low }
+        - { time: "15:19", height_m: 2.68, type: High }
+        - { time: "21:15", height_m: 1.4, type: Low }
+      "12-31":
+        - { time: "03:15", height_m: 2.64, type: High }
+        - { time: "09:44", height_m: 1.2, type: Low }
+        - { time: "16:15", height_m: 2.58, type: High }
+        - { time: "22:18", height_m: 1.54, type: Low }

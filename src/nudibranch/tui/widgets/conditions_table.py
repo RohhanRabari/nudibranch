@@ -3,6 +3,7 @@
 import asyncio
 from datetime import datetime
 from typing import Optional
+from zoneinfo import ZoneInfo
 
 from rich.text import Text
 from textual import work
@@ -167,7 +168,8 @@ class ConditionsTableWidget(Static):
                 event_type = "Low"
 
             if next_event:
-                time_str = next_event.time.strftime("%I:%M %p")
+                local_tz = ZoneInfo("Asia/Bangkok")
+                time_str = next_event.time.astimezone(local_tz).strftime("%I:%M %p")
                 tide_text = f"{arrow} → {event_type} {time_str}"
             else:
                 tide_text = f"{arrow} {event_type}"

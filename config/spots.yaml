@@ -30,32 +30,6 @@ spots:
   region: South Phuket
   depth_range: 5-22m
   description: Submerged reef covered in sea anemones, good for beginners
-- name: Raja Amphat
-  lat: -2.02872
-  lng: 130.65406
-  region: West Papua, Indonesia
-  depth_range: 5-40m
-  description: World-renowned biodiversity hotspot, pristine reefs
-- name: Ras Mohammed
-  lat: 27.7333
-  lng: 34.2333
-  region: Sinai Peninsula, Egypt
-  depth_range: 10-30m
-  description: Famous Red Sea national park, walls and drop-offs, abundant marine
-    life
-- name: Gopnath
-  lat: 21.20973331217586
-  lng: 72.10775409767042
-  region: Gulf of Khambhat (Gujarat)
-  depth_range: '?'
-  description: '?'
-- name: Shivrajpur Beach
-  lat: 22.337619
-  lng: 68.955994
-  region: Gujarat (12km North of Dwarka)
-  depth_range: ~10-30?
-  description: Not much of a Dive spot for me but a spot close to home, small shallow
-    kelp and rock structure
 - name: Hua Beach [Barnacle Rocks]
   lat: 7.95192
   lng: 98.264384
