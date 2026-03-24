@@ -10,7 +10,7 @@ from typing import Any, Optional
 from nudibranch.clients.copernicus import CopernicusClient
 from nudibranch.clients.open_meteo import OpenMeteoClient
 from nudibranch.clients.tides import TideClient
-from nudibranch.models import DiveSpot, FullConditions, MarineConditions, TideConditions
+from nudibranch.models import DiveSpot, FullConditions, HourlyForecast, MarineConditions, TideConditions
 from nudibranch.safety import SafetyAssessor
 from nudibranch.visibility import VisibilityEstimator
 
@@ -144,6 +144,27 @@ class ConditionsAggregator:
                 metadata["errors"]["turbidity"] = str(e)
                 metadata["cache_status"]["turbidity"] = "failed"
 
+        # Fetch hourly forecast
+        hourly_forecast = None
+        try:
+            hourly_raw = await self.open_meteo.fetch_hourly_forecast(spot.lat, spot.lng)
+            from datetime import timezone as tz
+            hourly_times = [
+                t.replace(tzinfo=tz.utc) if t.tzinfo is None else t
+                for t in hourly_raw["times"]
+            ]
+            hourly_forecast = HourlyForecast(
+                times=hourly_times,
+                wave_height_m=hourly_raw["wave_height_m"],
+                swell_height_m=hourly_raw["swell_height_m"],
+                wind_speed_kt=hourly_raw["wind_speed_kt"],
+                wind_gust_kt=hourly_raw["wind_gust_kt"],
+            )
+            metadata["cache_status"]["hourly_forecast"] = "fetched"
+        except Exception as e:
+            metadata["errors"]["hourly_forecast"] = str(e)
+            metadata["cache_status"]["hourly_forecast"] = "failed"
+
         # Calculate safety assessment
         safety = None
         if self.safety_assessor and marine_data:
@@ -195,6 +216,7 @@ class ConditionsAggregator:
             tides=tide_data,
             visibility=visibility,
             safety=safety,
+            hourly_forecast=hourly_forecast,
             metadata=metadata,
         )
 

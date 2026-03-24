@@ -94,6 +94,16 @@ class SafetyAssessment(BaseModel):
     limiting_factor: Optional[str] = Field(default=None, description="Most restrictive condition")
 
 
+class HourlyForecast(BaseModel):
+    """Hourly forecast arrays for wave, swell, and wind."""
+
+    times: list[datetime] = Field(description="Forecast timestamps (UTC)")
+    wave_height_m: list[float] = Field(description="Significant wave height in meters")
+    swell_height_m: list[Optional[float]] = Field(description="Swell height in meters")
+    wind_speed_kt: list[float] = Field(description="Wind speed in knots")
+    wind_gust_kt: list[Optional[float]] = Field(description="Wind gust speed in knots")
+
+
 class FullConditions(BaseModel):
     """Complete conditions data for a dive spot."""
 
@@ -102,5 +112,6 @@ class FullConditions(BaseModel):
     tides: Optional[TideConditions] = None
     visibility: Optional[VisibilityEstimate] = None
     safety: Optional[SafetyAssessment] = None
+    hourly_forecast: Optional[HourlyForecast] = None
     metadata: dict = Field(default_factory=dict, description="Fetch status and cache info")
     fetched_at: datetime = Field(default_factory=datetime.now)

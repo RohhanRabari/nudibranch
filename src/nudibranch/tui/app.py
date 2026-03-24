@@ -327,6 +327,9 @@ class NudibranchApp(App):
         status_bar = self.query_one(StatusBar)
         status_bar.mark_updated()
 
+        # Refresh detail panels with new data for the selected spot
+        self._update_detail_panels()
+
         # Show notification if there were errors
         if message.error_count > 0:
             self.notify(
@@ -416,17 +419,20 @@ class NudibranchApp(App):
         self.log(f"Reloaded {len(self.spots)} spots from config")
 
     def on_data_table_row_highlighted(self, event: DataTable.RowHighlighted) -> None:
-        """Handle row selection in the conditions table.
-
-        Args:
-            event: Row highlighted event
-        """
-        conditions_widget = self.query_one(ConditionsTableWidget)
+        """Handle row selection in the conditions table."""
         spot_name = str(event.row_key.value)
+        if not spot_name:
+            return
+        self._selected_spot_name = spot_name
+        self._update_detail_panels()
 
+    def _update_detail_panels(self) -> None:
+        """Update all detail panel widgets for the currently selected spot."""
+        spot_name = getattr(self, "_selected_spot_name", None)
         if not spot_name:
             return
 
+        conditions_widget = self.query_one(ConditionsTableWidget)
         conditions = conditions_widget.get_conditions(spot_name)
 
         if not conditions:
@@ -438,7 +444,7 @@ class NudibranchApp(App):
             self.query_one(InfoPanel).clear()
             return
 
-        self.log(f"Selected spot: {spot_name}")
+        self.log(f"Updating detail panels for: {spot_name}")
 
         # Update Charts tab
         if conditions.tides and conditions.tides.extremes:
@@ -447,10 +453,10 @@ class NudibranchApp(App):
                 source=conditions.tides.source,
             )
 
-        if conditions.marine:
-            self.query_one(WaveWindChart).set_data(
-                conditions.marine.wave_height_m, conditions.marine.wind_speed_kt,
-            )
+        if conditions.hourly_forecast:
+            self.query_one(WaveWindChart).set_forecast_data(conditions.hourly_forecast)
+        else:
+            self.query_one(WaveWindChart).clear()
 
         # Update Wind tab
         if conditions.marine:

@@ -12,7 +12,7 @@ from textual.app import ComposeResult
 from textual.widgets import Static
 from textual_plotext import PlotextPlot
 
-from nudibranch.models import FullConditions, TideExtreme
+from nudibranch.models import FullConditions, HourlyForecast, TideExtreme
 
 
 class TideChart(PlotextPlot):
@@ -236,7 +236,7 @@ class TideChart(PlotextPlot):
 
 
 class WaveWindChart(PlotextPlot):
-    """Wave height and wind speed overlay chart."""
+    """Hourly wave/swell/wind chart with dual y-axes and real forecast data."""
 
     DEFAULT_CSS = """
     WaveWindChart {
@@ -246,66 +246,203 @@ class WaveWindChart(PlotextPlot):
     }
     """
 
+    _LOCAL_TZ = ZoneInfo("Asia/Bangkok")
+
     def __init__(self) -> None:
         super().__init__()
-        self._hours: list[float] = []
+        self._forecast: Optional[HourlyForecast] = None
+        # Windowed data for plotting
+        self._local_hours: list[float] = []
         self._wave_heights: list[float] = []
+        self._swell_heights: list[float] = []
         self._wind_speeds: list[float] = []
+        self._now_local_hour: float = 0.0
+        self._tick_positions: list[float] = []
+        self._tick_labels: list[str] = []
+        self._midnight_positions: list[float] = []
 
-    def set_data(self, wave_height_m: float, wind_speed_kt: float) -> None:
-        """Generate a simulated 24h forecast from current conditions.
+    def on_mount(self) -> None:
+        self.replot()
+        self.set_interval(60.0, self._live_update)
 
-        Uses diurnal variation: wind peaks mid-afternoon, waves lag slightly.
+    def _live_update(self) -> None:
+        """Periodic re-render to advance the now marker."""
+        if self._forecast:
+            self._rebuild_series()
+
+    def set_forecast_data(self, forecast: Optional[HourlyForecast]) -> None:
+        """Set real hourly forecast data.
+
+        Args:
+            forecast: HourlyForecast with aligned arrays, or None to clear.
         """
-        current_h = datetime.now().hour + datetime.now().minute / 60.0
-        hours = [h * 0.5 for h in range(49)]  # 0..24 in 0.5h steps
+        self._forecast = forecast
+        if forecast:
+            self._rebuild_series()
+        else:
+            self.clear()
 
-        wind_speeds: list[float] = []
-        wave_heights: list[float] = []
+    def _rebuild_series(self) -> None:
+        """Recompute windowed series from stored forecast."""
+        forecast = self._forecast
+        if not forecast or not forecast.times:
+            self._local_hours = []
+            self._wave_heights = []
+            self._swell_heights = []
+            self._wind_speeds = []
+            self.replot()
+            self.refresh()
+            return
 
-        for h in hours:
-            t = (current_h + h) % 24
-            # Wind: diurnal pattern peaking around 14:00
-            wind_diurnal = 0.7 + 0.3 * math.sin(math.pi * max(0, t - 6) / 12)
-            wind_speeds.append(wind_speed_kt * wind_diurnal)
+        now_utc = datetime.now(timezone.utc)
+        now_local = now_utc.astimezone(self._LOCAL_TZ)
+        self._now_local_hour = now_local.hour + now_local.minute / 60.0
 
-            # Waves: similar but lagged ~2h and dampened
-            wave_diurnal = 0.8 + 0.2 * math.sin(math.pi * max(0, t - 8) / 12)
-            wave_heights.append(wave_height_m * wave_diurnal)
+        local_hours: list[float] = []
+        wave_h: list[float] = []
+        swell_h: list[float] = []
+        wind_s: list[float] = []
 
-        self._hours = hours
-        self._wave_heights = wave_heights
-        self._wind_speeds = wind_speeds
+        for i, t in enumerate(forecast.times):
+            offset_h = (t - now_utc).total_seconds() / 3600.0
+            if offset_h < -2 or offset_h > 22:
+                continue
+            local_dt = t.astimezone(self._LOCAL_TZ)
+            lh = local_dt.hour + local_dt.minute / 60.0
+            # Keep x-axis monotonically increasing
+            if local_hours and lh < local_hours[-1] - 12:
+                lh += 24.0
+            local_hours.append(round(lh, 2))
+            wave_h.append(forecast.wave_height_m[i] if i < len(forecast.wave_height_m) else 0.0)
+            swell_h.append(
+                forecast.swell_height_m[i]
+                if i < len(forecast.swell_height_m) and forecast.swell_height_m[i] is not None
+                else 0.0
+            )
+            wind_s.append(forecast.wind_speed_kt[i] if i < len(forecast.wind_speed_kt) else 0.0)
+
+        self._local_hours = local_hours
+        self._wave_heights = wave_h
+        self._swell_heights = swell_h
+        self._wind_speeds = wind_s
+
+        self._build_ticks()
         self.replot()
         self.refresh()
 
+    def _build_ticks(self) -> None:
+        """Compute AM/PM tick marks and midnight boundaries (same logic as TideChart)."""
+        if not self._local_hours:
+            self._tick_positions = []
+            self._tick_labels = []
+            self._midnight_positions = []
+            return
+
+        lo = math.floor(self._local_hours[0])
+        hi = math.ceil(self._local_hours[-1])
+
+        positions: list[float] = []
+        labels: list[str] = []
+        midnights: list[float] = []
+
+        now_local = datetime.now(timezone.utc).astimezone(self._LOCAL_TZ)
+
+        for h in range(lo, hi + 1):
+            if h % 24 == 0:
+                midnights.append(float(h))
+
+        h = lo
+        while h <= hi:
+            display_h = h % 24
+            if display_h == 0:
+                hours_until = h - (now_local.hour + now_local.minute / 60.0)
+                midnight_dt = now_local + timedelta(hours=hours_until)
+                day_name = midnight_dt.strftime("%a")
+                labels.append(f"12am {day_name}")
+            elif display_h == 12:
+                labels.append("12pm")
+            elif display_h > 12:
+                labels.append(f"{display_h - 12}pm")
+            else:
+                labels.append(f"{display_h}am")
+            positions.append(float(h))
+            h += 3
+
+        for mn in midnights:
+            if mn not in positions:
+                hours_until = mn - (now_local.hour + now_local.minute / 60.0)
+                midnight_dt = now_local + timedelta(hours=hours_until)
+                day_name = midnight_dt.strftime("%a")
+                idx = 0
+                for i, p in enumerate(positions):
+                    if p > mn:
+                        idx = i
+                        break
+                    idx = i + 1
+                positions.insert(idx, mn)
+                labels.insert(idx, f"12am {day_name}")
+
+        self._tick_positions = positions
+        self._tick_labels = labels
+        self._midnight_positions = midnights
+
     def replot(self) -> None:
-        """Redraw the chart."""
+        """Redraw the wave/wind chart with dual y-axes."""
         plt = self.plt
         plt.clear_figure()
         plt.title("Wave & Wind — 24h")
         plt.theme("textual-design-dark")
 
-        if self._hours:
+        if self._local_hours and self._wave_heights:
+            # Left y-axis: wave + swell (meters)
             plt.plot(
-                self._hours, self._wave_heights,
+                self._local_hours, self._wave_heights,
                 color=(0, 120, 255), marker="braille", label="Wave (m)",
+                yside="left",
             )
-            plt.plot(
-                self._hours, self._wind_speeds,
-                color=(255, 120, 0), marker="braille", label="Wind (kt)",
-            )
-        plt.grid(True)
-        plt.xlabel("Hour")
+            if any(v > 0 for v in self._swell_heights):
+                plt.plot(
+                    self._local_hours, self._swell_heights,
+                    color=(0, 206, 209), marker="braille", label="Swell (m)",
+                    yside="left",
+                )
 
-    def on_mount(self) -> None:
-        self.replot()
+            # Right y-axis: wind (knots)
+            plt.plot(
+                self._local_hours, self._wind_speeds,
+                color=(255, 165, 0), marker="braille", label="Wind (kt)",
+                yside="right",
+            )
+
+            # Now marker
+            now_h = self._now_local_hour
+            if self._local_hours and now_h < self._local_hours[0] - 12:
+                now_h += 24.0
+            plt.vline(now_h, color=(255, 165, 0))
+
+            # Midnight dividers
+            for mn in self._midnight_positions:
+                plt.vline(mn, color=(100, 100, 100))
+
+            # AM/PM x-axis ticks
+            if self._tick_positions:
+                plt.xticks(self._tick_positions, self._tick_labels)
+
+        plt.grid(True)
+        plt.ylabel("m", yside="left")
+        plt.ylabel("kt", yside="right")
 
     def clear(self) -> None:
-        """Clear the chart."""
-        self._hours = []
+        """Clear the chart to empty state."""
+        self._forecast = None
+        self._local_hours = []
         self._wave_heights = []
+        self._swell_heights = []
         self._wind_speeds = []
+        self._now_local_hour = 0.0
+        self._tick_positions = []
+        self._tick_labels = []
+        self._midnight_positions = []
         self.replot()
         self.refresh()
 

@@ -239,6 +239,91 @@ class OpenMeteoClient:
             "timestamp": datetime.fromisoformat(current.get("time", datetime.now().isoformat())),
         }
 
+    @retry(
+        stop=stop_after_attempt(3),
+        wait=wait_exponential(multiplier=1, min=2, max=10),
+        reraise=True,
+    )
+    async def fetch_hourly_forecast(
+        self, lat: float, lng: float, hours: int = 48
+    ) -> dict[str, Any]:
+        """Fetch hourly marine and weather forecast from Open-Meteo.
+
+        Makes two API calls: marine hourly + weather hourly.
+
+        Args:
+            lat: Latitude in decimal degrees
+            lng: Longitude in decimal degrees
+            hours: Number of forecast hours (default 48)
+
+        Returns:
+            Dictionary with aligned arrays: times, wave_height, swell_height,
+            wind_speed_kt, wind_gust_kt
+
+        Raises:
+            RuntimeError: If rate limit is exceeded
+            httpx.HTTPError: If request fails after retries
+        """
+        # Marine hourly
+        if not self.rate_limiter.can_call():
+            raise RuntimeError(
+                f"Open-Meteo rate limit reached ({self.rate_limiter.usage}), skipping request"
+            )
+        marine_params = {
+            "latitude": lat,
+            "longitude": lng,
+            "hourly": [
+                "wave_height",
+                "wave_period",
+                "swell_wave_height",
+                "swell_wave_period",
+            ],
+            "timezone": "UTC",
+            "forecast_hours": hours,
+        }
+        marine_resp = await self.client.get(self.MARINE_BASE_URL, params=marine_params)
+        marine_resp.raise_for_status()
+        self.rate_limiter.record()
+        marine_data = marine_resp.json().get("hourly", {})
+
+        # Weather hourly
+        if not self.rate_limiter.can_call():
+            raise RuntimeError(
+                f"Open-Meteo rate limit reached ({self.rate_limiter.usage}), skipping request"
+            )
+        weather_params = {
+            "latitude": lat,
+            "longitude": lng,
+            "hourly": ["wind_speed_10m", "wind_gusts_10m"],
+            "timezone": "UTC",
+            "forecast_hours": hours,
+            "wind_speed_unit": "kn",
+        }
+        weather_resp = await self.client.get(self.WEATHER_BASE_URL, params=weather_params)
+        weather_resp.raise_for_status()
+        self.rate_limiter.record()
+        weather_data = weather_resp.json().get("hourly", {})
+
+        # Parse ISO time strings
+        time_strings = marine_data.get("time", [])
+        times = [datetime.fromisoformat(t) for t in time_strings]
+
+        wave_height = marine_data.get("wave_height", [])
+        swell_height = marine_data.get("swell_wave_height", [])
+
+        # Weather arrays may have different length — align to marine times
+        wind_speed = weather_data.get("wind_speed_10m", [])
+        wind_gust = weather_data.get("wind_gusts_10m", [])
+
+        n = len(times)
+        return {
+            "times": times,
+            "wave_height_m": (wave_height + [0.0] * n)[:n],
+            "swell_height_m": (swell_height + [None] * n)[:n],
+            "wind_speed_kt": (wind_speed + [0.0] * n)[:n],
+            "wind_gust_kt": (wind_gust + [None] * n)[:n],
+        }
+
     async def fetch_combined(self, lat: float, lng: float) -> dict[str, Any]:
         """Fetch both marine and weather conditions.
 
