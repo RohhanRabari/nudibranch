@@ -141,28 +141,46 @@ class TideChart(PlotextPlot):
         labels: list[str] = []
         midnights: list[float] = []
 
+        # Find midnight boundaries independently (scan every integer hour)
+        now_local = datetime.now(timezone.utc).astimezone(self._LOCAL_TZ)
+        for h in range(lo, hi + 1):
+            if h % 24 == 0:
+                midnights.append(float(h))
+
+        # Build tick marks at every 3 hours
         h = lo
         while h <= hi:
             display_h = h % 24
-            # Mark midnight as day boundary
             if display_h == 0:
-                midnights.append(float(h))
-                # Midnight = start of next day; compute which day it is
-                now_local = datetime.now(timezone.utc).astimezone(self._LOCAL_TZ)
+                # Midnight tick — show day name
                 hours_until = h - (now_local.hour + now_local.minute / 60.0)
                 midnight_dt = now_local + timedelta(hours=hours_until)
                 day_name = midnight_dt.strftime("%a")
                 labels.append(f"12am {day_name}")
+            elif display_h == 12:
+                labels.append("12pm")
+            elif display_h > 12:
+                labels.append(f"{display_h - 12}pm")
             else:
-                # AM/PM format: 3pm, 6am, etc.
-                if display_h == 12:
-                    labels.append("12pm")
-                elif display_h > 12:
-                    labels.append(f"{display_h - 12}pm")
-                else:
-                    labels.append(f"{display_h}am")
+                labels.append(f"{display_h}am")
             positions.append(float(h))
             h += 3
+
+        # If midnight exists but isn't on a tick, add it as an extra tick
+        for mn in midnights:
+            if mn not in positions:
+                hours_until = mn - (now_local.hour + now_local.minute / 60.0)
+                midnight_dt = now_local + timedelta(hours=hours_until)
+                day_name = midnight_dt.strftime("%a")
+                # Insert in sorted order
+                idx = 0
+                for i, p in enumerate(positions):
+                    if p > mn:
+                        idx = i
+                        break
+                    idx = i + 1
+                positions.insert(idx, mn)
+                labels.insert(idx, f"12am {day_name}")
 
         self._tick_positions = positions
         self._tick_labels = labels
