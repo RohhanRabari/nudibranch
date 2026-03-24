@@ -10,6 +10,7 @@ from textual.widgets import DataTable, Footer, Label, Static, TabbedContent, Tab
 
 from nudibranch.aggregator import ConditionsAggregator
 from nudibranch.clients.open_meteo import OpenMeteoClient
+from nudibranch.clients.tide_stations import TideStationRegistry
 from nudibranch.clients.tides import TideClient
 from nudibranch.config import Config
 from nudibranch.models import DiveSpot
@@ -77,7 +78,7 @@ class StatusBar(Static):
                 minutes = seconds // 60
                 time_str = f"{minutes}m ago"
 
-            label.update(f"🟢 Last updated: {time_str} - Auto-refresh in {300 - seconds % 300}s")
+            label.update(f"🟢 Last updated: {time_str} - Auto-refresh in {120 - seconds % 120}s")
 
     def set_refreshing(self, refreshing: bool) -> None:
         """Set the refreshing state."""
@@ -250,7 +251,9 @@ class NudibranchApp(App):
 
         # Initialize data clients
         self.open_meteo = OpenMeteoClient()
-        self.tide_client = TideClient()
+        tide_stations_path = config_dir / "tide_stations.yaml"
+        self.station_registry = TideStationRegistry(tide_stations_path)
+        self.tide_client = TideClient(station_registry=self.station_registry)
         self.safety_assessor = SafetyAssessor(self.config.thresholds)
         self.visibility_estimator = VisibilityEstimator(self.config.thresholds)
 
@@ -289,9 +292,9 @@ class NudibranchApp(App):
         for spot in self.spots:
             self.log(f"  - {spot.name} ({spot.lat}, {spot.lng})")
 
-        # Start auto-refresh timer (5 minutes)
-        self.set_interval(300, self.auto_refresh)
-        self.log("Auto-refresh enabled (every 5 minutes)")
+        # Start auto-refresh timer (2 minutes for live data)
+        self.set_interval(120, self.auto_refresh)
+        self.log("Auto-refresh enabled (every 2 minutes)")
 
     def action_refresh(self) -> None:
         """Refresh all data (manual)."""
@@ -439,10 +442,9 @@ class NudibranchApp(App):
 
         # Update Charts tab
         if conditions.tides and conditions.tides.extremes:
-            now = datetime.now(timezone.utc)
-            current_hour = now.hour + now.minute / 60.0
             self.query_one(TideChart).set_tide_data(
-                conditions.tides.extremes, current_hour,
+                conditions.tides.extremes, 0,
+                source=conditions.tides.source,
             )
 
         if conditions.marine:

@@ -2,6 +2,7 @@
 
 from datetime import datetime, timedelta, timezone
 from typing import Optional
+from zoneinfo import ZoneInfo
 
 from rich.panel import Panel
 from rich.table import Table as RichTable
@@ -75,6 +76,18 @@ class TidePanelWidget(Static):
         content.append(f"🌙 {self.spot_name}\n", style="bold cyan")
         content.append("=" * 30 + "\n\n", style="cyan")
 
+        # Source badge
+        source = tides.source
+        if source == "station":
+            content.append("[STATION DATA]", style="bold green")
+        elif source == "api":
+            content.append("[API DATA]", style="bold blue")
+        elif source == "harmonic":
+            content.append("[⚠ APPROXIMATE — verify with local tide tables]", style="bold red")
+        else:
+            content.append(f"[{source.upper()}]", style="dim")
+        content.append("\n\n")
+
         # Current tide
         content.append("CURRENT TIDE\n", style="bold")
         if tides.current_height_m is not None:
@@ -95,10 +108,11 @@ class TidePanelWidget(Static):
             content.append("  Unknown\n\n", style="dim")
 
         # Next events
+        local_tz = ZoneInfo("Asia/Bangkok")
         content.append("NEXT EVENTS\n", style="bold")
 
         if tides.next_high:
-            time_str = tides.next_high.time.strftime("%I:%M %p")
+            time_str = tides.next_high.time.astimezone(local_tz).strftime("%I:%M %p")
             height = f"{tides.next_high.height_m:.2f}m"
             time_diff = tides.next_high.time - now
             hours = int(time_diff.total_seconds() / 3600)
@@ -110,7 +124,7 @@ class TidePanelWidget(Static):
             content.append(f"{time_until}\n", style="dim")
 
         if tides.next_low:
-            time_str = tides.next_low.time.strftime("%I:%M %p")
+            time_str = tides.next_low.time.astimezone(local_tz).strftime("%I:%M %p")
             height = f"{tides.next_low.height_m:.2f}m"
             time_diff = tides.next_low.time - now
             hours = int(time_diff.total_seconds() / 3600)
@@ -132,7 +146,7 @@ class TidePanelWidget(Static):
         content.append("\nUPCOMING TIDES\n", style="bold")
         upcoming = [e for e in tides.extremes[:6] if e.time > now]
         for extreme in upcoming:
-            time_str = extreme.time.strftime("%a %I:%M %p")
+            time_str = extreme.time.astimezone(local_tz).strftime("%a %I:%M %p")
             height_str = f"{extreme.height_m:.2f}m"
 
             if extreme.type == "High":

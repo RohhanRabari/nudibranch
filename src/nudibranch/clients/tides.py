@@ -7,12 +7,15 @@ Falls back to harmonic analysis if API is unavailable or rate limited.
 """
 
 import os
-from datetime import datetime, timedelta
-from typing import Any, Optional
+from datetime import datetime, timedelta, timezone
+from typing import TYPE_CHECKING, Any, Optional
 
 import httpx
 import numpy as np
 from tenacity import retry, retry_if_exception_type, stop_after_attempt, wait_exponential
+
+if TYPE_CHECKING:
+    from nudibranch.clients.tide_stations import TideStationRegistry
 
 
 class TideClient:
@@ -21,6 +24,11 @@ class TideClient:
     Provides accurate tide data for any location worldwide.
     Requires STORMGLASS_API_KEY environment variable (free tier available).
 
+    Fallback priority:
+        1. Stormglass API (if key available)
+        2. Station-based prediction (if station within 50km)
+        3. Generic harmonic fallback (last resort)
+
     Example:
         >>> client = TideClient()
         >>> tides = await client.fetch_tides(7.601, 98.366, days=7)
@@ -28,13 +36,19 @@ class TideClient:
 
     BASE_URL = "https://api.stormglass.io/v2"
 
-    def __init__(self, api_key: Optional[str] = None) -> None:
+    def __init__(
+        self,
+        api_key: Optional[str] = None,
+        station_registry: Optional["TideStationRegistry"] = None,
+    ) -> None:
         """Initialize the tide prediction client.
 
         Args:
             api_key: Stormglass.io API key (optional, reads from env if not provided)
+            station_registry: Optional station registry for published tide table data
         """
         self.api_key = api_key or os.getenv("STORMGLASS_API_KEY")
+        self.station_registry = station_registry
         self.client = httpx.AsyncClient(timeout=30.0)
 
     async def fetch_tides(self, lat: float, lng: float, days: int = 7) -> dict[str, Any]:
@@ -62,10 +76,21 @@ class TideClient:
                 result["source"] = "api"
                 return result
             except Exception as e:
-                # API failed, fall back to harmonic
-                print(f"⚠️  Stormglass API failed ({type(e).__name__}), using harmonic fallback")
+                # API failed, try next fallback
+                print(f"⚠️  Stormglass API failed ({type(e).__name__}), trying fallbacks")
 
-        # Fallback to harmonic analysis
+        # Try station-based prediction if a nearby station exists
+        if self.station_registry:
+            station = self.station_registry.find_nearest_station(lat, lng)
+            if station:
+                try:
+                    return self.station_registry.get_prediction(
+                        station, datetime.now(timezone.utc), days
+                    )
+                except Exception as e:
+                    print(f"⚠️  Station prediction failed ({type(e).__name__}), using harmonic fallback")
+
+        # Last resort: harmonic analysis
         return await self._fetch_harmonic(lat, lng, days)
 
     @retry(
@@ -77,7 +102,7 @@ class TideClient:
         """Internal method to fetch tides with retry logic."""
 
         # Calculate time range
-        start = datetime.now()
+        start = datetime.now(timezone.utc)
         end = start + timedelta(days=days)
 
         # Format timestamps for API (ISO 8601)
@@ -137,7 +162,7 @@ class TideClient:
         return {
             "extremes": extremes,
             "hourly_heights": hourly_heights,
-            "fetched_at": datetime.now(),
+            "fetched_at": datetime.now(timezone.utc),
         }
 
     async def close(self) -> None:
@@ -156,11 +181,10 @@ class TideClient:
         Returns:
             Dictionary with tide predictions from harmonic model
         """
-        # Generate time array (hourly for next N days) - use UTC to match API
-        from datetime import timezone
+        # Generate time array (15-min resolution for next N days) - use UTC to match API
         start = datetime.now(timezone.utc)
-        hours = days * 24
-        times = [start + timedelta(hours=h) for h in range(hours)]
+        steps = days * 24 * 4  # 15-minute intervals
+        times = [start + timedelta(hours=h * 0.25) for h in range(steps)]
 
         # Convert to numpy array of timestamps
         timestamps = np.array([t.timestamp() for t in times])
@@ -175,16 +199,16 @@ class TideClient:
         # Calculate tide heights using harmonic prediction
         heights = self._harmonic_predict(timestamps, constituents, amplitudes, phases, lat)
 
-        # Find extremes (high and low tides)
+        # Find extremes (high and low tides) at full 15-min resolution
         extremes = self._find_extremes(times, heights)
 
-        # Create hourly heights list
-        hourly_heights = [(t, float(h)) for t, h in zip(times, heights)]
+        # Create hourly heights list (every 4th point from 15-min data)
+        hourly_heights = [(t, float(h)) for t, h in zip(times[::4], heights[::4])]
 
         return {
             "extremes": extremes,
             "hourly_heights": hourly_heights,
-            "fetched_at": datetime.now(),
+            "fetched_at": datetime.now(timezone.utc),
             "source": "harmonic",
         }
 

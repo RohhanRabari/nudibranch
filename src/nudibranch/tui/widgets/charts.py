@@ -4,6 +4,8 @@ import math
 from datetime import datetime, timedelta, timezone
 from typing import Optional
 
+from zoneinfo import ZoneInfo
+
 from rich.panel import Panel
 from rich.text import Text
 from textual.app import ComposeResult
@@ -24,37 +26,72 @@ class TideChart(PlotextPlot):
     }
     """
 
+    # Local timezone for display — Phuket / Thailand
+    _LOCAL_TZ = ZoneInfo("Asia/Bangkok")
+
     def __init__(self) -> None:
         super().__init__()
-        self._hours: list[float] = []
+        self._local_hours: list[float] = []
         self._heights: list[float] = []
-        self._current_hour: float = 0.0
+        self._now_local_hour: float = 0.0
+        self._source: str = "unknown"
+        self._tick_positions: list[float] = []
+        self._tick_labels: list[str] = []
+        self._midnight_positions: list[float] = []
+        # Store extremes so the chart can re-render as time passes
+        self._extremes: list[TideExtreme] = []
 
-    def set_tide_data(self, extremes: list[TideExtreme], current_hour: float) -> None:
+    def on_mount(self) -> None:
+        self.replot()
+        # Re-render every 60s so the now-line and curve window advance
+        self.set_interval(60.0, self._live_update)
+
+    def _live_update(self) -> None:
+        """Periodic re-render to advance the now marker and curve window."""
+        if self._extremes:
+            self._rebuild_curve()
+
+    def set_tide_data(
+        self, extremes: list[TideExtreme], current_hour: float, source: str = "unknown"
+    ) -> None:
         """Set tide data from extremes and interpolate a smooth curve.
 
         Args:
             extremes: List of TideExtreme objects
-            current_hour: Current hour offset (0-24) for the 'now' marker
+            current_hour: (ignored — now computed internally from local time)
+            source: Data source tag ("api", "station", or "harmonic")
         """
-        self._current_hour = current_hour
+        self._source = source
+        self._extremes = list(extremes)
+        self._rebuild_curve()
 
-        if not extremes:
-            self._hours = []
+    def _rebuild_curve(self) -> None:
+        """Recompute the interpolated curve and ticks from stored extremes."""
+        if not self._extremes:
+            self._local_hours = []
             self._heights = []
             self.replot()
+            self.refresh()
             return
 
-        now = datetime.now(timezone.utc)
-        hours: list[float] = []
+        now_utc = datetime.now(timezone.utc)
+        now_local = now_utc.astimezone(self._LOCAL_TZ)
+        self._now_local_hour = now_local.hour + now_local.minute / 60.0
+
+        local_hours: list[float] = []
         heights: list[float] = []
 
-        # Filter to next 24h window
-        window_extremes = [e for e in extremes if e.time <= now + timedelta(hours=26)]
+        # Show from 2h before now to 22h after (so "now" line is visible)
+        window_extremes = [
+            e for e in self._extremes
+            if e.time >= now_utc - timedelta(hours=6)
+            and e.time <= now_utc + timedelta(hours=26)
+        ]
         if len(window_extremes) < 2:
-            self._hours = []
+            self._local_hours = []
             self._heights = []
             self.replot()
+            self.refresh()
             return
 
         # Cosine interpolation between consecutive extremes
@@ -69,42 +106,115 @@ class TideChart(PlotextPlot):
                 t_smooth = (1.0 - math.cos(t * math.pi)) / 2.0
 
                 interp_time = e1.time + timedelta(hours=time_span_h * t)
-                offset_h = (interp_time - now).total_seconds() / 3600.0
+                offset_h = (interp_time - now_utc).total_seconds() / 3600.0
 
-                if 0 <= offset_h <= 24:
-                    hours.append(round(offset_h, 2))
+                if -2 <= offset_h <= 22:
+                    # Convert to local clock hour for the x-axis
+                    local_dt = interp_time.astimezone(self._LOCAL_TZ)
+                    local_h = local_dt.hour + local_dt.minute / 60.0
+                    # Handle day wrap: keep x-axis monotonically increasing
+                    if local_hours and local_h < local_hours[-1] - 12:
+                        local_h += 24.0
+                    local_hours.append(round(local_h, 2))
                     heights.append(e1.height_m + (e2.height_m - e1.height_m) * t_smooth)
 
-        self._hours = hours
+        self._local_hours = local_hours
         self._heights = heights
+
+        # Build tick marks at whole hours
+        self._build_ticks()
         self.replot()
+        self.refresh()
+
+    def _build_ticks(self) -> None:
+        """Compute tick positions with AM/PM labels and midnight boundary markers."""
+        if not self._local_hours:
+            self._tick_positions = []
+            self._tick_labels = []
+            self._midnight_positions = []
+            return
+
+        lo = math.floor(self._local_hours[0])
+        hi = math.ceil(self._local_hours[-1])
+
+        positions: list[float] = []
+        labels: list[str] = []
+        midnights: list[float] = []
+
+        h = lo
+        while h <= hi:
+            display_h = h % 24
+            # Mark midnight as day boundary
+            if display_h == 0:
+                midnights.append(float(h))
+                # Midnight = start of next day; compute which day it is
+                now_local = datetime.now(timezone.utc).astimezone(self._LOCAL_TZ)
+                hours_until = h - (now_local.hour + now_local.minute / 60.0)
+                midnight_dt = now_local + timedelta(hours=hours_until)
+                day_name = midnight_dt.strftime("%a")
+                labels.append(f"12am {day_name}")
+            else:
+                # AM/PM format: 3pm, 6am, etc.
+                if display_h == 12:
+                    labels.append("12pm")
+                elif display_h > 12:
+                    labels.append(f"{display_h - 12}pm")
+                else:
+                    labels.append(f"{display_h}am")
+            positions.append(float(h))
+            h += 3
+
+        self._tick_positions = positions
+        self._tick_labels = labels
+        self._midnight_positions = midnights
 
     def replot(self) -> None:
         """Redraw the tide chart."""
         plt = self.plt
         plt.clear_figure()
-        plt.title("Tide — 24h")
+        if self._source == "harmonic":
+            plt.title("Tide — 24h ⚠ APPROXIMATE")
+        elif self._source in ("api", "station"):
+            plt.title(f"Tide — 24h ({self._source})")
+        else:
+            plt.title("Tide — 24h")
         plt.theme("textual-design-dark")
 
-        if self._hours and self._heights:
+        if self._local_hours and self._heights:
             plt.plot(
-                self._hours, self._heights,
+                self._local_hours, self._heights,
                 color=(0, 206, 209), marker="braille", label="Tide (m)",
             )
-            plt.vline(self._current_hour, color=(255, 165, 0))
-        plt.grid(True)
-        plt.xlabel("Hour")
-        plt.ylabel("m")
+            # "Now" marker at current local hour
+            now_h = self._now_local_hour
+            # Handle day wrap to match axis range
+            if self._local_hours and now_h < self._local_hours[0] - 12:
+                now_h += 24.0
+            plt.vline(now_h, color=(255, 165, 0))
 
-    def on_mount(self) -> None:
-        self.replot()
+            # Midnight day-boundary lines
+            for mn in self._midnight_positions:
+                plt.vline(mn, color=(100, 100, 100))
+
+            # Custom x-axis ticks in AM/PM format
+            if self._tick_positions:
+                plt.xticks(self._tick_positions, self._tick_labels)
+
+        plt.grid(True)
+        plt.ylabel("m")
 
     def clear(self) -> None:
         """Clear the chart."""
-        self._hours = []
+        self._extremes = []
+        self._local_hours = []
         self._heights = []
-        self._current_hour = 0.0
+        self._now_local_hour = 0.0
+        self._source = "unknown"
+        self._tick_positions = []
+        self._tick_labels = []
+        self._midnight_positions = []
         self.replot()
+        self.refresh()
 
 
 class WaveWindChart(PlotextPlot):
@@ -149,6 +259,7 @@ class WaveWindChart(PlotextPlot):
         self._wave_heights = wave_heights
         self._wind_speeds = wind_speeds
         self.replot()
+        self.refresh()
 
     def replot(self) -> None:
         """Redraw the chart."""
@@ -178,6 +289,7 @@ class WaveWindChart(PlotextPlot):
         self._wave_heights = []
         self._wind_speeds = []
         self.replot()
+        self.refresh()
 
 
 def _degrees_to_cardinal(degrees: float) -> str:
@@ -232,6 +344,18 @@ class InfoPanel(Static):
         content.append(f"ℹ️  {self.spot_name}\n", style="bold cyan")
         content.append("═" * 30 + "\n\n", style="cyan")
 
+        # Source badge
+        source = tides.source
+        if source == "station":
+            content.append("[STATION DATA]", style="bold green")
+        elif source == "api":
+            content.append("[API DATA]", style="bold blue")
+        elif source == "harmonic":
+            content.append("[⚠ APPROXIMATE]", style="bold red")
+        else:
+            content.append(f"[{source.upper()}]", style="dim")
+        content.append("\n\n")
+
         # Current tide
         content.append("CURRENT TIDE\n", style="bold")
         if tides.current_height_m is not None:
@@ -250,9 +374,10 @@ class InfoPanel(Static):
             content.append("  Unknown\n\n", style="dim")
 
         # Next events
+        local_tz = ZoneInfo("Asia/Bangkok")
         content.append("NEXT EVENTS\n", style="bold")
         if tides.next_high:
-            time_str = tides.next_high.time.strftime("%I:%M %p")
+            time_str = tides.next_high.time.astimezone(local_tz).strftime("%I:%M %p")
             height = f"{tides.next_high.height_m:.2f}m"
             time_diff = tides.next_high.time - now
             hours = int(time_diff.total_seconds() / 3600)
@@ -262,7 +387,7 @@ class InfoPanel(Static):
             content.append(f"in {hours}h {minutes:02d}m\n", style="dim")
 
         if tides.next_low:
-            time_str = tides.next_low.time.strftime("%I:%M %p")
+            time_str = tides.next_low.time.astimezone(local_tz).strftime("%I:%M %p")
             height = f"{tides.next_low.height_m:.2f}m"
             time_diff = tides.next_low.time - now
             hours = int(time_diff.total_seconds() / 3600)
@@ -277,7 +402,7 @@ class InfoPanel(Static):
         content.append("UPCOMING TIDES\n", style="bold")
         upcoming = [e for e in tides.extremes[:6] if e.time > now]
         for extreme in upcoming:
-            time_str = extreme.time.strftime("%a %I:%M %p")
+            time_str = extreme.time.astimezone(local_tz).strftime("%a %I:%M %p")
             height_str = f"{extreme.height_m:.2f}m"
             if extreme.type == "High":
                 icon, style = "↑", "green"

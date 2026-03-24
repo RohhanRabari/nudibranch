@@ -123,6 +123,7 @@ class ConditionsAggregator:
                 is_rising=is_rising,
                 next_high=TideExtreme(**next_high) if next_high else None,
                 next_low=TideExtreme(**next_low) if next_low else None,
+                source=tide_raw.get("source", "unknown"),
             )
             metadata["cache_status"]["tides"] = "fetched"
         except Exception as e:

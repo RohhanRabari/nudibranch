@@ -166,6 +166,7 @@ class WindRoseChart(PlotextPlot):
         self._speed = speed_kt
         self._direction = direction_deg or 0.0
         self.replot()
+        self.refresh()
 
     def replot(self) -> None:
         """Redraw the wind rose chart."""
@@ -195,3 +196,4 @@ class WindRoseChart(PlotextPlot):
         self._speed = 0.0
         self._direction = 0.0
         self.replot()
+        self.refresh()

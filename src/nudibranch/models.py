@@ -72,6 +72,7 @@ class TideConditions(BaseModel):
     is_rising: Optional[bool] = Field(default=None, description="Whether tide is rising")
     next_high: Optional[TideExtreme] = Field(default=None)
     next_low: Optional[TideExtreme] = Field(default=None)
+    source: str = Field(default="unknown", description="Data source: 'api', 'station', or 'harmonic'")
     fetched_at: datetime = Field(default_factory=datetime.now)
 
 

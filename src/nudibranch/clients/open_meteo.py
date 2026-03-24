@@ -3,13 +3,78 @@
 API Documentation:
 - Marine: https://open-meteo.com/en/docs/marine-weather-api
 - Weather: https://open-meteo.com/en/docs
+
+Free-tier limits (enforced by RateLimiter):
+- 10,000 weighted calls/day
+- 5,000 weighted calls/hour
+- 600 weighted calls/minute
 """
 
+import time
+from collections import deque
 from datetime import datetime
 from typing import Any
 
 import httpx
 from tenacity import retry, stop_after_attempt, wait_exponential
+
+
+class RateLimiter:
+    """Token-bucket rate limiter tracking per-minute, per-hour, and per-day usage.
+
+    Each API call is recorded with a timestamp. Before allowing a new call,
+    the limiter prunes expired entries and checks all three windows.
+    """
+
+    def __init__(
+        self,
+        per_minute: int = 500,
+        per_hour: int = 4000,
+        per_day: int = 8000,
+    ) -> None:
+        self.per_minute = per_minute
+        self.per_hour = per_hour
+        self.per_day = per_day
+        self._timestamps: deque[float] = deque()
+
+    def _prune(self, now: float) -> None:
+        """Remove entries older than 24 hours."""
+        cutoff = now - 86400
+        while self._timestamps and self._timestamps[0] < cutoff:
+            self._timestamps.popleft()
+
+    def can_call(self) -> bool:
+        """Check whether a new call is allowed under all three windows."""
+        now = time.monotonic()
+        self._prune(now)
+
+        minute_count = sum(1 for t in self._timestamps if t > now - 60)
+        hour_count = sum(1 for t in self._timestamps if t > now - 3600)
+        day_count = len(self._timestamps)
+
+        return (
+            minute_count < self.per_minute
+            and hour_count < self.per_hour
+            and day_count < self.per_day
+        )
+
+    def record(self) -> None:
+        """Record that a call was made."""
+        self._timestamps.append(time.monotonic())
+
+    @property
+    def usage(self) -> dict[str, str]:
+        """Return current usage summary for all windows."""
+        now = time.monotonic()
+        self._prune(now)
+        minute_count = sum(1 for t in self._timestamps if t > now - 60)
+        hour_count = sum(1 for t in self._timestamps if t > now - 3600)
+        day_count = len(self._timestamps)
+        return {
+            "minute": f"{minute_count}/{self.per_minute}",
+            "hour": f"{hour_count}/{self.per_hour}",
+            "day": f"{day_count}/{self.per_day}",
+        }
 
 
 class OpenMeteoClient:
@@ -25,9 +90,14 @@ class OpenMeteoClient:
     WEATHER_BASE_URL = "https://api.open-meteo.com/v1/forecast"
     TIMEOUT = 30.0
 
-    def __init__(self) -> None:
-        """Initialize the Open-Meteo client."""
+    def __init__(self, rate_limiter: RateLimiter | None = None) -> None:
+        """Initialize the Open-Meteo client.
+
+        Args:
+            rate_limiter: Optional rate limiter (created with safe defaults if not provided)
+        """
         self._client: httpx.AsyncClient | None = None
+        self.rate_limiter = rate_limiter or RateLimiter()
 
     async def __aenter__(self) -> "OpenMeteoClient":
         """Async context manager entry."""
@@ -71,6 +141,11 @@ class OpenMeteoClient:
         Raises:
             httpx.HTTPError: If request fails after retries
         """
+        if not self.rate_limiter.can_call():
+            raise RuntimeError(
+                f"Open-Meteo rate limit reached ({self.rate_limiter.usage}), skipping request"
+            )
+
         params = {
             "latitude": lat,
             "longitude": lng,
@@ -87,6 +162,7 @@ class OpenMeteoClient:
 
         response = await self.client.get(self.MARINE_BASE_URL, params=params)
         response.raise_for_status()
+        self.rate_limiter.record()
         data = response.json()
 
         current = data.get("current", {})
@@ -126,6 +202,11 @@ class OpenMeteoClient:
         Raises:
             httpx.HTTPError: If request fails after retries
         """
+        if not self.rate_limiter.can_call():
+            raise RuntimeError(
+                f"Open-Meteo rate limit reached ({self.rate_limiter.usage}), skipping request"
+            )
+
         params = {
             "latitude": lat,
             "longitude": lng,
@@ -143,6 +224,7 @@ class OpenMeteoClient:
 
         response = await self.client.get(self.WEATHER_BASE_URL, params=params)
         response.raise_for_status()
+        self.rate_limiter.record()
         data = response.json()
 
         current = data.get("current", {})
